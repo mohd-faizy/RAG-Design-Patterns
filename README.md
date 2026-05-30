@@ -331,16 +331,26 @@ print(response)
 
 | Architecture | Complexity | Accuracy | Latency | Cost | Best For |
 |:---|:---:|:---:|:---:|:---:|:---|
-| Standard RAG | 🟢 Low | ⭐⭐⭐ | Fast | $ | Starting point |
-| Hybrid RAG | 🟡 Medium | ⭐⭐⭐⭐ | Medium | $$ | Better recall |
-| Fusion RAG | 🟡 Medium | ⭐⭐⭐⭐ | Medium | $$ | Max coverage |
-| Reranker RAG | 🟡 Medium | ⭐⭐⭐⭐⭐ | Medium | $$ | High precision |
-| Self-RAG | 🟠 High | ⭐⭐⭐⭐⭐ | Slower | $$$ | Adaptive QA |
-| Corrective RAG | 🟠 High | ⭐⭐⭐⭐⭐ | Slower | $$$ | Factual accuracy |
-| Graph RAG | 🟠 High | ⭐⭐⭐⭐⭐ | Medium | $$$ | Relational data |
-| RAPTOR RAG | 🟠 High | ⭐⭐⭐⭐⭐ | Medium | $$$ | Long documents |
-| Agentic RAG | 🔴 V.High | ⭐⭐⭐⭐⭐ | Slowest | $$$ | Autonomous tasks |
-| Deep Research | 🔴 V.High | ⭐⭐⭐⭐⭐ | Slowest | $$$$ | Research reports |
+| **01. Standard RAG** | 🟢 Low | ⭐⭐⭐ | Fast | $ | General Q&A, simple apps |
+| **02. Hybrid RAG** | 🟡 Medium | ⭐⭐⭐⭐ | Medium | $$ | Keyword & semantic mixed queries |
+| **03. Contextual RAG** | 🟡 Medium | ⭐⭐⭐⭐ | Medium | $$ | Ambiguous queries, short chunks |
+| **04. Hierarchical RAG** | 🟡 Medium | ⭐⭐⭐⭐ | Medium | $$ | Large multi-level docs, books |
+| **05. Fusion RAG** | 🟡 Medium | ⭐⭐⭐⭐ | Medium | $$ | Boosting query recall & coverage |
+| **06. Multi-Source RAG** | 🟡 Medium | ⭐⭐⭐⭐ | Medium | $$ | Diverse enterprise databases |
+| **07. Reranker-Centric RAG** | 🟡 Medium | ⭐⭐⭐⭐⭐ | Medium | $$ | High precision & strict contexts |
+| **08. ColBERT RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Fast | $$ | Granular token-level matching |
+| **09. Multi-Hop RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Slower | $$$ | Cross-document reasoning |
+| **10. Graph RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Medium | $$$ | Structured entity-relationship lookup |
+| **11. KG-RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Medium | $$$ | High-accuracy domain ontologies |
+| **12. RAPTOR RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Medium | $$$ | Global text summary overviews |
+| **13. Self-RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Slower | $$$ | Dynamic, reflection-driven generation |
+| **14. Corrective RAG (CRAG)** | 🟠 High | ⭐⭐⭐⭐⭐ | Slower | $$$ | Filtering out wrong/irrelevant retrieval |
+| **15. Corrective Feedback RAG** | 🟠 High | ⭐⭐⭐⭐ | Medium | $$$ | Iterative error self-correction |
+| **16. Adaptive RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Dynamic | $$ to $$$ | Routing queries by actual complexity |
+| **17. ReAct RAG** | 🔴 V.High | ⭐⭐⭐⭐⭐ | Slow | $$$$ | Sequence actions & tool-calling |
+| **18. Memory-Augmented RAG** | 🟠 High | ⭐⭐⭐⭐⭐ | Medium | $$$ | Session personalization & long history |
+| **19. Agentic RAG** | 🔴 V.High | ⭐⭐⭐⭐⭐ | Slowest | $$$$ | Multi-agent execution workflows |
+| **20. Deep Research RAG** | 🔴 V.High | ⭐⭐⭐⭐⭐ | Slowest | $$$$ | Comprehensive synthesis reports |
 
 ---
 
