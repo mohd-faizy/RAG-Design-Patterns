@@ -325,7 +325,6 @@ print(response)
 ## 📊 Architecture Comparison Matrix
 
 <p align="center">
-  <b>📊 RAG Architecture Comparison Matrix</b><br>
   <img src="_assets/rag-comparison-matrix.png" alt="RAG Architecture Comparison Matrix" width="100%">
 </p>
 
