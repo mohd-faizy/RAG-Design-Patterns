@@ -328,6 +328,10 @@ print(response)
   <img src="_assets/rag-comparison-matrix.png" alt="RAG Architecture Comparison Matrix" width="100%">
 </p>
 
+---
+
+## ⚖️ Performance & Complexity Trade-offs
+
 | Architecture | Complexity | Accuracy | Latency | Cost |
 |:---|:---:|:---:|:---:|:---:|
 | **01. Standard RAG** | 🟢 Low | ⭐⭐⭐ | Fast | $ |
