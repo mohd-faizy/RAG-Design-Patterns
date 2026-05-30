@@ -140,18 +140,18 @@ Final Answer
 
 ---
 
-## 🏢 What Top AI Companies Use in Production
+## What Top AI Companies Use in Production
 
 | Company / System | Architecture Stack |
 |:---|:---|
-| 🤖 **OpenAI Deep Research** | Deep Research RAG + Agentic RAG + Memory |
-| 🪟 **Microsoft GraphRAG** | Graph RAG + KG-RAG |
-| 🔍 **Perplexity AI** | Fusion RAG + Multi-Hop RAG + Rerankers |
-| 🧠 **Anthropic Claude** | Agentic RAG + Tool Use + Memory |
-| 🌐 **Google Gemini** | Deep Research RAG + Multi-Hop RAG |
-| 🦙 **Meta Retrieval** | ColBERT + Hybrid Retrieval |
-| 💼 **LinkedIn Search** | ColBERT-style Retrieval |
-| 🎬 **Netflix Search** | Graph + Knowledge Retrieval |
+| **OpenAI Deep Research** | Deep Research RAG + Agentic RAG + Memory |
+| **Microsoft GraphRAG** | Graph RAG + KG-RAG |
+| **Perplexity AI** | Fusion RAG + Multi-Hop RAG + Rerankers |
+| **Anthropic Claude** | Agentic RAG + Tool Use + Memory |
+| **Google Gemini** | Deep Research RAG + Multi-Hop RAG |
+| **Meta Retrieval** | ColBERT + Hybrid Retrieval |
+| **LinkedIn Search** | ColBERT-style Retrieval |
+| **Netflix Search** | Graph + Knowledge Retrieval |
 
 ---
 
