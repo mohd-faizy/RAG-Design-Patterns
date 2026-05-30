@@ -67,48 +67,48 @@ Phase 5: Agentic Systems      →  ReAct, Memory-Augmented, Agentic, Deep Resear
 
 ### 🟢 Phase 1 — Fundamentals
 
-| # | Architecture | Category | Key Idea | Best For | Importance |
-|:---:|:---|:---|:---|:---|:---:|
-| 01 | **Standard RAG** | Foundation | Retrieve relevant chunks → Generate answer | General Q&A, simple apps | ⭐⭐⭐⭐⭐ |
-| 02 | **Hybrid RAG** | Retrieval Enhancement | BM25 (sparse) + Vector (dense) search | Improved retrieval quality | ⭐⭐⭐⭐⭐ |
-| 03 | **Contextual RAG** | Context Optimization | Expand query with surrounding context | Ambiguous queries, chatbots | ⭐⭐⭐⭐ |
-| 04 | **Hierarchical RAG** | Large Corpus Retrieval | Coarse retrieval → Fine retrieval | Large documents, corpora | ⭐⭐⭐⭐ |
+| # | Architecture | Category | Key Idea | Best For | Primary Challenge |
+|:---:|:---|:---|:---|:---|:---|
+| 01 | **Standard RAG** | Foundation | Retrieve relevant chunks → Generate answer | General Q&A, simple apps | Baseline information retrieval |
+| 02 | **Hybrid RAG** | Retrieval Enhancement | BM25 (sparse) + Vector (dense) search | Improved retrieval quality | Keyword vs semantic mismatch |
+| 03 | **Contextual RAG** | Context Optimization | Expand query with surrounding context | Ambiguous queries, chatbots | Information loss during chunking |
+| 04 | **Hierarchical RAG** | Large Corpus Retrieval | Coarse retrieval → Fine retrieval | Large documents, corpora | High noise in large search spaces |
 
 ### 🔵 Phase 2 — Better Retrieval
 
-| # | Architecture | Category | Key Idea | Best For | Importance |
-|:---:|:---|:---|:---|:---|:---:|
-| 05 | **Fusion RAG** | Query Expansion | Multiple queries → Fuse results | Boost recall & robustness | ⭐⭐⭐⭐⭐ |
-| 06 | **Multi-Source RAG** | Multi-Repository | Combine multiple knowledge sources | Enterprise, multi-doc systems | ⭐⭐⭐⭐ |
-| 07 | **Reranker-Centric RAG** | Precision Retrieval | Retrieve many → Rerank → Use best | High-precision retrieval needs | ⭐⭐⭐⭐⭐ |
-| 08 | **ColBERT RAG** | Advanced Retrieval | Token-level late interaction scoring | State-of-the-art retrieval | ⭐⭐⭐⭐⭐ |
+| # | Architecture | Category | Key Idea | Best For | Primary Challenge |
+|:---:|:---|:---|:---|:---|:---|
+| 05 | **Fusion RAG** | Query Expansion | Multiple queries → Fuse results | Boost recall & robustness | Poor/ambiguous user queries |
+| 06 | **Multi-Source RAG** | Multi-Repository | Combine multiple knowledge sources | Enterprise, multi-doc systems | Fragmented data silos |
+| 07 | **Reranker-Centric RAG** | Precision Retrieval | Retrieve many → Rerank → Use best | High-precision retrieval needs | Irrelevant results in top-K |
+| 08 | **ColBERT RAG** | Advanced Retrieval | Token-level late interaction scoring | State-of-the-art retrieval | Missed fine-grained semantic matches |
 
 ### 🟠 Phase 3 — Better Reasoning
 
-| # | Architecture | Category | Key Idea | Best For | Importance |
-|:---:|:---|:---|:---|:---|:---:|
-| 09 | **Multi-Hop RAG** | Iterative Reasoning | Retrieve → Reason → Retrieve again | Complex multi-fact questions | ⭐⭐⭐⭐⭐ |
-| 10 | **Graph RAG** | Graph-Based Retrieval | Traverse graph relationships | Relationship-heavy data | ⭐⭐⭐⭐⭐ |
-| 11 | **KG-RAG** | Knowledge Graphs | Entities + Relations → Graph traversal | Knowledge-intensive domains | ⭐⭐⭐⭐⭐ |
-| 12 | **RAPTOR RAG** | Recursive Summarization | Build a tree of summaries → Retrieve | Long documents, research | ⭐⭐⭐⭐⭐ |
+| # | Architecture | Category | Key Idea | Best For | Primary Challenge |
+|:---:|:---|:---|:---|:---|:---|
+| 09 | **Multi-Hop RAG** | Iterative Reasoning | Retrieve → Reason → Retrieve again | Complex multi-fact questions | Dispersed/multi-step information |
+| 10 | **Graph RAG** | Graph-Based Retrieval | Traverse graph relationships | Relationship-heavy data | Disconnected entity discovery |
+| 11 | **KG-RAG** | Knowledge Graphs | Entities + Relations → Graph traversal | Knowledge-intensive domains | Exact relational query failure |
+| 12 | **RAPTOR RAG** | Recursive Summarization | Build a tree of summaries → Retrieve | Long documents, research | Loss of global context in details |
 
 ### 🟣 Phase 4 — Self-Improving Systems
 
-| # | Architecture | Category | Key Idea | Best For | Importance |
-|:---:|:---|:---|:---|:---|:---:|
-| 13 | **Self-RAG** | Self-Correcting | LLM decides when & what to retrieve | Dynamic, adaptive QA | ⭐⭐⭐⭐⭐ |
-| 14 | **Corrective RAG (CRAG)** | Self-Correcting | Critique → Detect error → Correct | High-accuracy applications | ⭐⭐⭐⭐⭐ |
-| 15 | **Corrective Feedback RAG** | Feedback-Driven | Collect feedback → Improve generation | Learning systems | ⭐⭐⭐⭐ |
-| 16 | **Adaptive RAG** | Dynamic Routing | Route: vector / hybrid / web / none | Cost & latency optimization | ⭐⭐⭐⭐⭐ |
+| # | Architecture | Category | Key Idea | Best For | Primary Challenge |
+|:---:|:---|:---|:---|:---|:---|
+| 13 | **Self-RAG** | Self-Correcting | LLM decides when & what to retrieve | Dynamic, adaptive QA | Fixed/unnecessary retrieval calls |
+| 14 | **Corrective RAG (CRAG)** | Self-Correcting | Critique → Detect error → Correct | High-accuracy applications | Hallucinating from wrong retrieval |
+| 15 | **Corrective Feedback RAG** | Feedback-Driven | Collect feedback → Improve generation | Learning systems | Static errors in generated text |
+| 16 | **Adaptive RAG** | Dynamic Routing | Route: vector / hybrid / web / none | Cost & latency optimization | Single-path query handling |
 
 ### 🔴 Phase 5 — Agentic Systems
 
-| # | Architecture | Category | Key Idea | Best For | Importance |
-|:---:|:---|:---|:---|:---|:---:|
-| 17 | **ReAct RAG** | Reasoning + Acting | Reason → Act (retrieve/search) → Reason | Complex tasks needing tools | ⭐⭐⭐⭐⭐ |
-| 18 | **Memory-Augmented RAG** | Persistent Memory | Retrieve from short & long-term memory | Conversational agents | ⭐⭐⭐⭐⭐ |
-| 19 | **Agentic RAG** | Autonomous Agents | Plan → Act → Observe → Iterate | Autonomous, long-horizon tasks | ⭐⭐⭐⭐⭐ |
-| 20 | **Deep Research RAG** | Autonomous Research | Plan → Search → Synthesize → Report | Research, analysis, reports | ⭐⭐⭐⭐⭐ |
+| # | Architecture | Category | Key Idea | Best For | Primary Challenge |
+|:---:|:---|:---|:---|:---|:---|
+| 17 | **ReAct RAG** | Reasoning + Acting | Reason → Act (retrieve/search) → Reason | Complex tasks needing tools | Lack of tool-use orchestration |
+| 18 | **Memory-Augmented RAG** | Persistent Memory | Retrieve from short & long-term memory | Conversational agents | Loss of multi-turn user context |
+| 19 | **Agentic RAG** | Autonomous Agents | Plan → Act → Observe → Iterate | Autonomous, long-horizon tasks | Multi-step task decomposition |
+| 20 | **Deep Research RAG** | Autonomous Research | Plan → Search → Synthesize → Report | Research, analysis, reports | Time-consuming multi-page search |
 
 ---
 
