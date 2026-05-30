@@ -144,14 +144,14 @@ Final Answer
 
 | Company / System | Architecture Stack |
 |:---|:---|
-| **OpenAI Deep Research** | Deep Research RAG + Agentic RAG + Memory |
-| **Microsoft GraphRAG** | Graph RAG + KG-RAG |
-| **Perplexity AI** | Fusion RAG + Multi-Hop RAG + Rerankers |
-| **Anthropic Claude** | Agentic RAG + Tool Use + Memory |
-| **Google Gemini** | Deep Research RAG + Multi-Hop RAG |
-| **Meta Retrieval** | ColBERT + Hybrid Retrieval |
-| **LinkedIn Search** | ColBERT-style Retrieval |
-| **Netflix Search** | Graph + Knowledge Retrieval |
+| 1️⃣ **OpenAI Deep Research** | Deep Research RAG + Agentic RAG + Memory |
+| 2️⃣ **Microsoft GraphRAG** | Graph RAG + KG-RAG |
+| 3️⃣ **Perplexity AI** | Fusion RAG + Multi-Hop RAG + Rerankers |
+| 4️⃣ **Anthropic Claude** | Agentic RAG + Tool Use + Memory |
+| 5️⃣ **Google Gemini** | Deep Research RAG + Multi-Hop RAG |
+| 6️⃣ **Meta Retrieval** | ColBERT + Hybrid Retrieval |
+| 7️⃣ **LinkedIn Search** | ColBERT-style Retrieval |
+| 8️⃣ **Netflix Search** | Graph + Knowledge Retrieval |
 
 ---
 
