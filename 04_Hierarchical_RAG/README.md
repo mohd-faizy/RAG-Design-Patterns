@@ -67,8 +67,6 @@ The codebase is highly modularized and clean:
 ├── app.py               # Main CLI interactive loop entrypoint
 ├── requirements.txt     # Local project packages
 │
-├── data/
-│   └── sample.txt       # Seed raw data files
 │
 └── src/
     ├── __init__.py      # Package initialization

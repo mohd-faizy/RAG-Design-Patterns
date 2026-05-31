@@ -72,8 +72,6 @@ The project has a modular, scalable design:
 ├── requirements.txt     # Local project packages
 ├── .env                 # Environment variables configuration
 │
-├── data/
-│   └── knowledge.txt     # Seed local corpus text file
 │
 └── src/
     ├── __init__.py      # Package initialization

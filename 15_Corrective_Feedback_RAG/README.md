@@ -75,8 +75,6 @@ CRAG builds a robust safety-net:
 15_Corrective_Feedback_RAG/
 ├── app.py              # CLI Entrypoint loop
 ├── requirements.txt    # Phase dependencies
-├── data/
-│   └── sample.txt      # Source text corpus
 └── src/
     ├── __init__.py     # Package marker
     ├── ingestion.py    # Vector database builder (ChromaDB)

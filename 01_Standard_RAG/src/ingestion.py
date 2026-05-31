@@ -16,7 +16,7 @@ def create_vector_store():
         return
 
     print("Initializing ingestion pipeline...")
-    loader = TextLoader(str(BASE_DIR / "data" / "sample.txt"))
+    loader = TextLoader(str(BASE_DIR.parent / "_data" / "source.txt"))
     documents = loader.load()
 
     # Split long text documents into manageable pieces

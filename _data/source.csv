@@ -1,0 +1,6 @@
+Concept,Topic,Description,Year
+Hybrid Search,Retrieval,Combines lexical (BM25) and semantic (vector) queries for robust recall.,2024
+Metadata Filtering,Retrieval,Restricts the search space by applying database filters before or after semantic querying.,2024
+Cross-Encoder Reranking,Reranking,Re-scores candidate chunks using token-level joint attention to prioritize high-relevance facts.,2024
+Query Expansion,Query Transformation,Generates synonyms or alternative query formulations to bridge vocabulary gaps.,2024
+Self-RAG,Self-Correction,An agentic loop where the LLM evaluates retrieved chunks and its own generation for quality.,2024

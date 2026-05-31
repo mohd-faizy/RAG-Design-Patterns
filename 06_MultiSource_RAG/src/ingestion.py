@@ -1,3 +1,4 @@
+from pathlib import Path
 import json
 import os
 from langchain_core.documents import Document
@@ -7,7 +8,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-CHROMA_PATH = os.path.abspath(os.path.join(current_dir, "..", "chroma_db"))
+CHROMA_PATH = str(Path(__file__).resolve().parent.parent / "chroma_db")
 
 
 def load_documents():
@@ -15,7 +16,7 @@ def load_documents():
 
     # Dynamically resolve data directory relative to this script
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    data_dir = os.path.abspath(os.path.join(current_dir, "..", "data"))
+    data_dir = str(Path(__file__).resolve().parent.parent.parent / "_data")
 
     # 1. Load Text Source
     txt_path = os.path.join(data_dir, "source.txt")
@@ -48,6 +49,60 @@ def load_documents():
                         docs.append(Document(page_content=text, metadata=meta))
         except Exception as e:
             print(f"[JSON Loader Warning] Failed to parse JSON: {e}")
+
+    # 4. Load Markdown Source
+    md_path = os.path.join(data_dir, "source.md")
+    if os.path.exists(md_path):
+        try:
+            print("Loading Markdown source...")
+            loader = TextLoader(md_path, encoding="utf-8")
+            md_docs = loader.load()
+            for doc in md_docs:
+                doc.metadata["source_type"] = "markdown"
+            docs.extend(md_docs)
+        except Exception as e:
+            print(f"[Markdown Loader Warning] Failed to parse Markdown: {e}")
+
+    # 5. Load CSV Source
+    csv_path = os.path.join(data_dir, "source.csv")
+    if os.path.exists(csv_path):
+        try:
+            print("Loading CSV source...")
+            import csv
+            with open(csv_path, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    text = f"Concept: {row.get('Concept', '')}. Topic: {row.get('Topic', '')}. Description: {row.get('Description', '')}."
+                    meta = {"topic": row.get("Topic", ""), "source_type": "csv", "year": row.get("Year", "")}
+                    docs.append(Document(page_content=text, metadata=meta))
+        except Exception as e:
+            print(f"[CSV Loader Warning] Failed to parse CSV: {e}")
+
+    # 6. Load HTML Source
+    html_path = os.path.join(data_dir, "source.html")
+    if os.path.exists(html_path):
+        try:
+            print("Loading HTML source...")
+            import re
+            with open(html_path, "r", encoding="utf-8") as f:
+                html_text = f.read()
+            # Basic tag stripping for lightweight loading
+            clean_text = re.sub(r'<[^>]+>', ' ', html_text)
+            clean_text = re.sub(r'\s+', ' ', clean_text).strip()
+            docs.append(Document(page_content=clean_text, metadata={"source_type": "html"}))
+        except Exception as e:
+            print(f"[HTML Loader Warning] Failed to parse HTML: {e}")
+
+    # 7. Load YAML Source
+    yaml_path = os.path.join(data_dir, "source.yaml")
+    if os.path.exists(yaml_path):
+        try:
+            print("Loading YAML source...")
+            with open(yaml_path, "r", encoding="utf-8") as f:
+                yaml_text = f.read()
+            docs.append(Document(page_content=yaml_text, metadata={"source_type": "yaml"}))
+        except Exception as e:
+            print(f"[YAML Loader Warning] Failed to parse YAML: {e}")
 
     print(f"Total raw source documents loaded: {len(docs)}")
 

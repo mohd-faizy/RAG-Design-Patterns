@@ -51,8 +51,6 @@ The table below contrasts flat vector search against graph-based semantic retrie
 10_Graph_RAG/
 ├── app.py              # CLI Entrypoint loop
 ├── requirements.txt    # Phase dependencies
-├── data/
-│   └── sample.txt      # Source text corpus
 └── src/
     ├── __init__.py     # Package marker
     ├── ingestion.py    # Triplets extractor & Neo4j clear/seed pipeline

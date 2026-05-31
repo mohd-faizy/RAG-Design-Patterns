@@ -78,8 +78,6 @@ Where:
 05_Fusion_RAG/
 ├── app.py              # CLI Entrypoint loop
 ├── requirements.txt    # Phase-specific dependencies
-├── data/
-│   └── sample.txt      # Source text corpus
 └── src/
     ├── __init__.py     # Package initialization marker
     ├── ingestion.py    # Vector database builder (ChromaDB)

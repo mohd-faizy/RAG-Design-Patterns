@@ -1,0 +1,272 @@
+[
+  [
+    "RAG",
+    "is a paradigm in",
+    "Artificial Intelligence"
+  ],
+  [
+    "RAG",
+    "equips",
+    "Large Language Models"
+  ],
+  [
+    "Large Language Models",
+    "have",
+    "parametric memory"
+  ],
+  [
+    "Large Language Models",
+    "have",
+    "operational knowledge source"
+  ],
+  [
+    "RAG systems",
+    "minimize",
+    "factual hallucinations"
+  ],
+  [
+    "RAG systems",
+    "enable",
+    "real-time information updates"
+  ],
+  [
+    "RAG systems",
+    "enforce",
+    "strict validation grounding"
+  ],
+  [
+    "Standard RAG architectures",
+    "process",
+    "inputs"
+  ],
+  [
+    "Standard RAG architectures",
+    "have",
+    "linear pipeline"
+  ],
+  [
+    "Standard RAG",
+    "serves as",
+    "baseline"
+  ],
+  [
+    "Standard RAG",
+    "suffers from",
+    "severe limitations"
+  ],
+  [
+    "Hybrid RAG",
+    "combines",
+    "dense semantic vector retrieval"
+  ],
+  [
+    "Hybrid RAG",
+    "combines",
+    "sparse lexical keyword retrieval"
+  ],
+  [
+    "Hybrid RAG",
+    "uses",
+    "BM25"
+  ],
+  [
+    "Contextual RAG",
+    "optimizes",
+    "query recall"
+  ],
+  [
+    "Contextual RAG",
+    "prevents",
+    "structural information loss"
+  ],
+  [
+    "Hierarchical RAG",
+    "addresses",
+    "trade-off"
+  ],
+  [
+    "Hierarchical RAG",
+    "organizes",
+    "documents"
+  ],
+  [
+    "Reranker-Centric RAG",
+    "introduces",
+    "high-capacity cross-encoder model"
+  ],
+  [
+    "Reranker-Centric RAG",
+    "uses",
+    "bi-encoder embedding model"
+  ],
+  [
+    "Multi-Hop RAG",
+    "executes",
+    "iterative retrieval steps"
+  ],
+  [
+    "Multi-Hop RAG",
+    "answers",
+    "complex multi-fact questions"
+  ],
+  [
+    "Knowledge Graph RAG",
+    "maps",
+    "entities"
+  ],
+  [
+    "Knowledge Graph RAG",
+    "maps",
+    "relationships"
+  ],
+  [
+    "Knowledge Graph RAG",
+    "uses",
+    "graph database"
+  ],
+  [
+    "Agentic RAG",
+    "transforms",
+    "retrieval"
+  ],
+  [
+    "Agentic RAG",
+    "uses",
+    "central planner agent"
+  ],
+  [
+    "Deep Research RAG",
+    "goes beyond",
+    "standard retrieval"
+  ],
+  [
+    "Deep Research RAG",
+    "uses",
+    "Research Planner"
+  ],
+  [
+    "LangChain",
+    "is",
+    "orchestration framework"
+  ],
+  [
+    "LangChain",
+    "simplifies",
+    "creation of applications"
+  ],
+  [
+    "LangChain",
+    "connects",
+    "LLMs"
+  ],
+  [
+    "LangGraph",
+    "is",
+    "orchestration library"
+  ],
+  [
+    "LangGraph",
+    "is built on",
+    "LangChain"
+  ],
+  [
+    "LangGraph",
+    "represents",
+    "agent workflows"
+  ],
+  [
+    "LangGraph",
+    "supports",
+    "loops"
+  ],
+  [
+    "LangGraph",
+    "supports",
+    "cycles"
+  ],
+  [
+    "LangGraph",
+    "supports",
+    "deep persistence"
+  ],
+  [
+    "LangGraph",
+    "supports",
+    "human-in-the-loop approval"
+  ],
+  [
+    "LangGraph",
+    "supports",
+    "multi-agent coordination"
+  ],
+  [
+    "RAG",
+    "has",
+    "architectures"
+  ],
+  [
+    "RAG",
+    "has",
+    "systems"
+  ],
+  [
+    "Large Language Models",
+    "are used in",
+    "RAG"
+  ],
+  [
+    "Artificial Intelligence",
+    "includes",
+    "RAG"
+  ],
+  [
+    "RAG",
+    "improves",
+    "Large Language Models"
+  ],
+  [
+    "Large Language Models",
+    "are improved by",
+    "RAG"
+  ],
+  [
+    "RAG",
+    "is used in",
+    "applications"
+  ],
+  [
+    "Applications",
+    "use",
+    "RAG"
+  ],
+  [
+    "RAG",
+    "is used in",
+    "LangChain"
+  ],
+  [
+    "LangChain",
+    "uses",
+    "RAG"
+  ],
+  [
+    "RAG",
+    "is used in",
+    "LangGraph"
+  ],
+  [
+    "LangGraph",
+    "uses",
+    "RAG"
+  ],
+  [
+    "LangGraph",
+    "contains",
+    "nodes"
+  ],
+  [
+    "LangGraph",
+    "contains",
+    "edges"
+  ]
+]

@@ -10,7 +10,7 @@ CHROMA_PATH = str(BASE_DIR / "chroma_db")
 
 
 def load_documents():
-    loader = TextLoader("data/knowledge.txt")
+    loader = TextLoader(str(Path(__file__).resolve().parent.parent.parent / "_data" / "source.txt"))
     docs = loader.load()
 
     splitter = RecursiveCharacterTextSplitter(

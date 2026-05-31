@@ -65,8 +65,6 @@ Standard RAG retrieves once and misses the connection. Multi-Hop RAG bridges the
 09_MultiHop_RAG/
 ├── app.py              # CLI Entrypoint loop
 ├── requirements.txt    # Phase dependencies
-├── data/
-│   └── sample.txt      # Source text corpus
 └── src/
     ├── __init__.py     # Package marker
     ├── ingestion.py    # Vector database builder (ChromaDB)

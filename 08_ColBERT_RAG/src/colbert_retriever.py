@@ -4,10 +4,16 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 # Try to import native colbert libraries
+import platform
 try:
-    from colbert.infra import Run, RunConfig
-    from colbert import Indexer, Searcher
-    COLBERT_AVAILABLE = True
+    if platform.system() == "Windows":
+        # Native Stanford ColBERT relies on C++ extensions, GCC, CUDA, and Linux-specific APIs (e.g. fcntl)
+        # We force simulation mode on Windows to guarantee stable, error-free execution
+        COLBERT_AVAILABLE = False
+    else:
+        from colbert.infra import Run, RunConfig
+        from colbert import Indexer, Searcher
+        COLBERT_AVAILABLE = True
 except ImportError:
     COLBERT_AVAILABLE = False
 

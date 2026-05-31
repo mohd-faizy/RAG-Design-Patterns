@@ -47,9 +47,29 @@ class GraphBuilder:
         return triplets
 
     def store_triplets(self, triplets: list[list[str]]):
-        """Stores triplets in local Neo4j database using Cypher commands."""
+        """Stores triplets in local Neo4j database using Cypher commands or local JSON file if offline."""
+        from pathlib import Path
+        import json
+        
         if not self.online:
-            print("[GraphBuilder] Offline: Skipping Neo4j write.")
+            print("[GraphBuilder] Offline: Saving triplets to local_graph.json...")
+            local_path = str(Path(__file__).resolve().parent.parent / "local_graph.json")
+            existing = []
+            if os.path.exists(local_path):
+                try:
+                    with open(local_path, "r", encoding="utf-8") as f:
+                        existing = json.load(f)
+                except Exception:
+                    existing = []
+            
+            # Combine without duplicates
+            for t in triplets:
+                if t not in existing:
+                    existing.append(t)
+            
+            with open(local_path, "w", encoding="utf-8") as f:
+                json.dump(existing, f, indent=2)
+            print(f"[GraphBuilder] Saved {len(triplets)} relationships to local_graph.json successfully!")
             return
 
         with self.driver.session() as session:

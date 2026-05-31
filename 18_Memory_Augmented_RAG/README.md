@@ -84,8 +84,6 @@ Context: "User prefers Neo4j" → Personalized answer generated
 ├── requirements.txt        # Phase dependencies
 ├── memory/
 │   └── memory.json         # Persistent long-term memory store
-├── data/
-│   └── sample.txt          # Source text corpus
 └── src/
     ├── __init__.py         # Package marker
     ├── ingestion.py        # Vector database builder (ChromaDB)

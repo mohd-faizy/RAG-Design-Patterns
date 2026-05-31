@@ -1,0 +1,16 @@
+rag_pipeline:
+  version: "1.0.0"
+  retriever:
+    dense:
+      model: "BAAI/bge-small-en-v1.5"
+      metric: "cosine"
+    sparse:
+      algorithm: "BM25"
+      k1: 1.2
+      b: 0.75
+  reranker:
+    model: "BAAI/bge-reranker-large"
+    top_n: 5
+  generator:
+    model: "gpt-4o"
+    temperature: 0.0

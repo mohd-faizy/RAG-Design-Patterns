@@ -43,11 +43,11 @@ def enrich_all_projects():
         # Ensure data directory exists
         os.makedirs(data_dir, exist_ok=True)
         
-        # Write to sample.txt if folder uses it or doesn't have knowledge.txt
-        sample_path = os.path.join(data_dir, "sample.txt")
+        # Write to source.txt if folder uses it or doesn't have knowledge.txt
+        sample_path = os.path.join(data_dir, "source.txt")
         knowledge_path = os.path.join(data_dir, "knowledge.txt")
         
-        # We always write to sample.txt if it already exists or if we need standard data
+        # We always write to source.txt if it already exists or if we need standard data
         # If it's one of ColBERT, KG RAG, Deep Research RAG, they use knowledge.txt
         if folder in ["08_ColBERT_RAG", "11_KG_RAG", "20_Deep_Research_RAG"]:
             target_path = knowledge_path

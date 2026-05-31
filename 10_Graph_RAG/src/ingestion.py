@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent  # repo module root
 def build_knowledge_graph():
     print("Initializing Graph RAG Ingestion Pipeline...")
     
-    loader = TextLoader(str(BASE_DIR / "data" / "sample.txt"))
+    loader = TextLoader(str(BASE_DIR.parent / "_data" / "source.txt"))
     docs = loader.load()
 
     llm = ChatGroq(

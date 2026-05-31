@@ -8,7 +8,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
 CHROMA_PATH = str(BASE_DIR / "chroma_db")
-DATA_PATH  = str(BASE_DIR / "data" / "sample.txt")
+REPO_ROOT  = BASE_DIR.parent                        # repo root
+DATA_PATH  = str(REPO_ROOT / "_data" / "source.txt")
 
 def load_documents():
     loader = TextLoader(DATA_PATH)

@@ -71,8 +71,6 @@ Adaptive RAG solves this by learning *what kind of answer* is needed before *how
 16_Adaptive_RAG/
 ├── app.py              # CLI Entrypoint loop
 ├── requirements.txt    # Phase dependencies
-├── data/
-│   └── sample.txt      # Source text corpus
 └── src/
     ├── __init__.py     # Package marker
     ├── ingestion.py    # Vector database builder (ChromaDB)

@@ -10,7 +10,7 @@ CHROMA_PATH = str(BASE_DIR / "chroma_db")
 
 
 def load_and_split_documents():
-    loader = TextLoader(str(BASE_DIR / "data" / "sample.txt"))
+    loader = TextLoader(str(BASE_DIR.parent / "_data" / "source.txt"))
     documents = loader.load()
 
     splitter = RecursiveCharacterTextSplitter(
