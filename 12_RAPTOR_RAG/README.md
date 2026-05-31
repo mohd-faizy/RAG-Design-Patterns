@@ -40,6 +40,10 @@ graph TD
     HigherLevel --> Recursive{"Recursive Process < Max Levels?"}
     Recursive -- YES --> Clustering
     Recursive -- NO --> Tree["Semantic Tree Struct"]
+
+    style Doc fill:#0369A1,stroke:#0C4A6E,stroke-width:2px,color:#fff
+    style Tree fill:#B45309,stroke:#78350F,stroke-width:2px,color:#fff
+    style Recursive fill:#B45309,stroke:#78350F,stroke-width:2px,color:#fff
 ```
 
 ### 2. RAPTOR Retrieval & Generation Flow
@@ -50,6 +54,9 @@ graph TD
     Query([User Query]) --> Retrieve["Retrieve {Semantic Tree Search}"]
     Retrieve --> Generate["Generation {Groq Llama-3.3}"]
     Generate --> FinalAnswer([Final Answer])
+
+    style Query fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style FinalAnswer fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
 ```
 
 ---

@@ -38,6 +38,10 @@ graph TD
     Fusion --> Rerank["Reranking {Optional Cross-Encoder}"]
     Rerank --> Groq["Groq LLM {Llama-3.3}"]
     Groq --> FinalAnswer([Final Answer])
+
+    style Query fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style FinalAnswer fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
+    style Fusion fill:#B45309,stroke:#78350F,stroke-width:2px,color:#fff
 ```
 
 ### Flow Breakdown

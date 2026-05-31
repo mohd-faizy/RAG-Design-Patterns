@@ -21,9 +21,9 @@ graph TD
     
     Generate --> FinalAnswer([Final Answer])
 
-    style Query fill:#f9f,stroke:#333,stroke-width:2px
-    style FinalAnswer fill:#ccf,stroke:#333,stroke-width:2px
-    style Classifier fill:#ff9,stroke:#333,stroke-width:2px
+    style Query fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style FinalAnswer fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
+    style Classifier fill:#B45309,stroke:#78350F,stroke-width:2px,color:#fff
 ```
 
 ---

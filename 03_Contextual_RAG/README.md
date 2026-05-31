@@ -36,6 +36,9 @@ graph TD
     Chunking --> Attach["Attach Context to Chunks"]
     Attach --> Embeddings["Generate Embeddings {Local BAAI/bge-small-en-v1.5}"]
     Embeddings --> Store["Store in Vector DB {ChromaDB}"]
+
+    style Doc fill:#0369A1,stroke:#0C4A6E,stroke-width:2px,color:#fff
+    style Store fill:#0369A1,stroke:#0C4A6E,stroke-width:2px,color:#fff
 ```
 
 ### 2. RAG Execution Flow
@@ -46,6 +49,9 @@ graph TD
     Query([User Question]) --> Retrieve["Retrieve {ChromaDB}"]
     Retrieve --> Generate["Generate {Groq Llama-3.3}"]
     Generate --> FinalAnswer([Final Answer])
+
+    style Query fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style FinalAnswer fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
 ```
 
 ---

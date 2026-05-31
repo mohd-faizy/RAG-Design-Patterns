@@ -32,6 +32,9 @@ graph TD
     Action --> Observation["Observation"]
     Observation --> Thought2["Thought"]
     Thought2 --> FinalAnswer([Final Answer])
+
+    style Thought fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style FinalAnswer fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
 ```
 
 ### 2. ReAct RAG Tool Architecture
@@ -52,6 +55,10 @@ graph TD
     Observations --> Loop["Reasoning Loop {Thought-Action-Observation}"]
     Loop --> Agent
     Loop --> FinalAnswer([Final Answer])
+
+    style Query fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style FinalAnswer fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
+    style Loop fill:#B45309,stroke:#78350F,stroke-width:2px,color:#fff
 ```
 
 ---

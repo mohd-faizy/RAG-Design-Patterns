@@ -45,6 +45,10 @@ graph TD
     QueryEngine --> Subgraph["Relevant Subgraph"]
     Subgraph --> Groq["Groq LLM {Llama-3.3-70b}"]
     Groq --> Final([Final Answer])
+
+    style Docs fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style Final fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
+    style QueryEngine fill:#B45309,stroke:#78350F,stroke-width:2px,color:#fff
 ```
 
 ### 2. State-Based Graph Schema

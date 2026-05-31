@@ -35,6 +35,9 @@ graph TD
     Parent --> Child["Child Chunks {200 Token Splitter}"]
     Child --> Embed["Embed Child Chunks {Local BAAI/bge-small-en-v1.5}"]
     Embed --> Store["Store Chunks in Vector DB {ChromaDB}"]
+
+    style Doc fill:#0369A1,stroke:#0C4A6E,stroke-width:2px,color:#fff
+    style Store fill:#0369A1,stroke:#0C4A6E,stroke-width:2px,color:#fff
 ```
 
 ### 2. Hierarchical Retrieval Flow
@@ -47,6 +50,9 @@ graph TD
     Find --> Expand["Expand Context"]
     Expand --> Generate["LLM Generation {Groq Llama-3.3}"]
     Generate --> FinalAnswer([Final Answer])
+
+    style Query fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style FinalAnswer fill:#F43F5E,stroke:#9F1239,stroke-width:2px,color:#fff
 ```
 
 ---
