@@ -3,7 +3,7 @@
   <h1>⚡ RAG Design Patterns</h1>
 
   <p>
-    <b>A comprehensive, production-ready collection of 20 Retrieval-Augmented Generation (RAG) architecture implementations using Python & LangChain.</b>
+    <b>A comprehensive collection of 20 Retrieval-Augmented Generation (RAG) architecture implementations using Python & LangChain.</b>
   </p>
 
   <!-- Badges -->
@@ -12,22 +12,16 @@
       <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License" />
     </a>
     <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/stargazers">
-      <img src="https://img.shields.io/github/stars/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&logo=github&color=D97706" alt="GitHub Stars" />
+      <img src="https://img.shields.io/github/stars/mohd-faizy/rag-design-patterns?style=for-the-badge&logo=github&color=D97706" alt="GitHub Stars" />
     </a>
     <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/network/members">
-      <img src="https://img.shields.io/github/forks/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&logo=github&color=2563EB" alt="GitHub Forks" />
-    </a>
-    <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/issues">
-      <img src="https://img.shields.io/github/issues/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&logo=github&color=EA4335" alt="GitHub Issues" />
-    </a>
-    <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/pulls">
-      <img src="https://img.shields.io/github/issues-pr/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&logo=git&logoColor=white&color=A855F7" alt="GitHub Pull Requests" />
+      <img src="https://img.shields.io/github/forks/mohd-faizy/rag-design-patterns?style=for-the-badge&logo=github&color=2563EB" alt="GitHub Forks" />
     </a>
     <a href="https://github.com/mohd-faizy/RAG-Design-Patterns">
-      <img src="https://img.shields.io/github/repo-size/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&color=0EA5E9" alt="Repository Size" />
+      <img src="https://img.shields.io/github/repo-size/mohd-faizy/rag-design-patterns?style=for-the-badge&color=0EA5E9" alt="Repository Size" />
     </a>
     <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/commits/main">
-      <img src="https://img.shields.io/github/last-commit/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&color=10B981" alt="Last Commit" />
+      <img src="https://img.shields.io/github/last-commit/mohd-faizy/rag-design-patterns?style=for-the-badge&color=10B981" alt="Last Commit" />
     </a>
   </p>
   <p>
@@ -39,9 +33,8 @@
       <img src="https://img.shields.io/badge/LangGraph-Agentic-008080?style=for-the-badge&logo=langchain&logoColor=white" alt="LangGraph" />
     </a>
     <a href="https://groq.com/">
-      <img src="https://img.shields.io/badge/Groq-Free%20API-F55036?style=for-the-badge&logo=groq&logoColor=white" alt="Groq" />
+      <img src="https://img.shields.io/badge/Groq-LLM-F55036?style=for-the-badge&logo=groq&logoColor=white" alt="Groq" />
     </a>
-    <img src="https://img.shields.io/badge/Jupyter-Notebooks-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter" />
     <img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face" />
     <img src="https://img.shields.io/badge/FAISS-Vector%20Store-00ADD8?style=for-the-badge" alt="FAISS" />
     <img src="https://img.shields.io/badge/ChromaDB-Vector%20DB-FF6B35?style=for-the-badge" alt="ChromaDB" />
@@ -56,7 +49,7 @@
 
 ## 📖 Overview
 
-This repository is a **comprehensive reference implementation** of **20 RAG (Retrieval-Augmented Generation) design patterns**, built with **Python** and **LangChain**. Each architecture is implemented as a clean, well-documented Jupyter Notebook — covering everything from the foundational Standard RAG to cutting-edge Agentic and Deep Research RAG systems.
+This repository is a **comprehensive reference implementation** of **20 RAG (Retrieval-Augmented Generation) design patterns**, built with **Python** and **LangChain**. Each architecture is implemented as a clean, modular, and well-documented application featuring an interactive Command-Line Interface (CLI) — covering everything from the foundational Standard RAG to cutting-edge Agentic and Deep Research RAG systems.
 
 It serves as both a **learning curriculum** and a **production-ready reference** for AI engineers and researchers who want to deeply understand, compare, and deploy the right RAG strategy for their use case.
 
@@ -254,43 +247,35 @@ Final Answer
 
 ## 📂 Repository Structure
 
+The repository is organized into 20 standalone implementation folders directly in the root directory. Each folder is a complete, self-contained application representing a specific RAG pattern:
+
 ```
 RAG-Design-Patterns/
 │
-├── 📁 01_Fundamentals/
-│   ├── 01_Standard_RAG.ipynb
-│   ├── 02_Hybrid_RAG.ipynb
-│   ├── 03_Contextual_RAG.ipynb
-│   └── 04_Hierarchical_RAG.ipynb
+├── 📁 01_Standard_RAG/             # Standard RAG (Retrieve → Generate)
+│   ├── 📄 app.py                   # Interactive CLI Entry Point
+│   ├── 📁 src/                     # Core system modules (graph, state, retriever, prompts)
+│   └── 📄 README.md                # Dedicated pattern architecture guide
 │
-├── 📁 02_Better_Retrieval/
-│   ├── 05_Fusion_RAG.ipynb
-│   ├── 06_MultiSource_RAG.ipynb
-│   ├── 07_Reranker_Centric_RAG.ipynb
-│   └── 08_ColBERT_RAG.ipynb
+├── 📁 02_Hybrid_RAG/               # Keyword (BM25) + Semantic (Dense Vector) search
+│   ├── 📄 app.py
+│   ├── 📁 src/
+│   └── 📄 README.md
 │
-├── 📁 03_Better_Reasoning/
-│   ├── 09_MultiHop_RAG.ipynb
-│   ├── 10_Graph_RAG.ipynb
-│   ├── 11_KG_RAG.ipynb
-│   └── 12_RAPTOR_RAG.ipynb
+├── 📁 03_Contextual_RAG/           # Query expansion with document/chunk context
 │
-├── 📁 04_Self_Improving/
-│   ├── 13_Self_RAG.ipynb
-│   ├── 14_Corrective_RAG.ipynb
-│   ├── 15_Feedback_RAG.ipynb
-│   └── 16_Adaptive_RAG.ipynb
+... [ 04 to 19 standalone directories matching the roadmap ] ...
 │
-├── 📁 05_Agentic_Systems/
-│   ├── 17_ReAct_RAG.ipynb
-│   ├── 18_Memory_Augmented_RAG.ipynb
-│   ├── 19_Agentic_RAG.ipynb
-│   └── 20_Deep_Research_RAG.ipynb
+├── 📁 20_Deep_Research_RAG/        # Autonomous Deep Research agent system
+│   ├── 📄 app.py
+│   ├── 📁 src/                     # Planner, Search Tools, Synthesizer, Graph
+│   └── 📄 README.md
 │
-├── 📁 _assets/                  # Architecture diagrams & cheat sheets
-├── 📄 requirements.txt
-├── 📄 .env.example
-└── 📄 README.md
+├── 📁 _assets/                     # Design elements & roadmap diagrams
+├── 📁 _data/                       # Source document datasets for ingestion
+├── 📄 requirements.txt             # Dependency requirements
+├── 📄 pyproject.toml               # Poetry/UV package manager configurations
+└── 📄 README.md                    # Root overview file (this guide)
 ```
 
 ---
@@ -301,7 +286,7 @@ RAG-Design-Patterns/
 
 - **Python 3.9+**
 - **Git**
-- **API Keys**: Groq / HuggingFace / Cohere *(as needed per notebook)*
+- **API Keys**: Groq / HuggingFace / Cohere *(as needed per pattern)*
 
 ### Installation
 
@@ -346,10 +331,13 @@ COHERE_API_KEY=...
 LANGCHAIN_API_KEY=...
 ```
 
-**4. Launch Jupyter**
+**4. Run any RAG Pattern Application**
+
+Navigate to the directory of the pattern you want to run and execute `app.py`:
 
 ```bash
-jupyter notebook
+cd 01_Standard_RAG
+python app.py
 ```
 
 ### Minimal Standard RAG Example
@@ -409,7 +397,7 @@ print(response)
 | **Vector Stores** | FAISS, ChromaDB, Pinecone, Weaviate |
 | **Rerankers** | Cohere Rerank, Cross-Encoder, ColBERT |
 | **Graph DBs** | Neo4j, NetworkX |
-| **Notebooks** | Jupyter, Google Colab |
+| **Interface** | Command-Line Interface (CLI) |
 
 ---
 
