@@ -17,10 +17,31 @@
     <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/network/members">
       <img src="https://img.shields.io/github/forks/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&logo=github&color=2563EB" alt="GitHub Forks" />
     </a>
+    <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/issues">
+      <img src="https://img.shields.io/github/issues/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&logo=github&color=EA4335" alt="GitHub Issues" />
+    </a>
+    <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/pulls">
+      <img src="https://img.shields.io/github/issues-pr/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&logo=git&logoColor=white&color=A855F7" alt="GitHub Pull Requests" />
+    </a>
+    <a href="https://github.com/mohd-faizy/RAG-Design-Patterns">
+      <img src="https://img.shields.io/github/repo-size/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&color=0EA5E9" alt="Repository Size" />
+    </a>
+    <a href="https://github.com/mohd-faizy/RAG-Design-Patterns/commits/main">
+      <img src="https://img.shields.io/github/last-commit/mohd-faizy/RAG-Design-Patterns?style=for-the-badge&color=10B981" alt="Last Commit" />
+    </a>
+  </p>
+  <p>
     <img src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-    <img src="https://img.shields.io/badge/LangChain-Framework-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" alt="LangChain" />
+    <a href="https://github.com/langchain-ai/langchain">
+      <img src="https://img.shields.io/badge/LangChain-Framework-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" alt="LangChain" />
+    </a>
+    <a href="https://github.com/langchain-ai/langgraph">
+      <img src="https://img.shields.io/badge/LangGraph-Agentic-008080?style=for-the-badge&logo=langchain&logoColor=white" alt="LangGraph" />
+    </a>
+    <a href="https://groq.com/">
+      <img src="https://img.shields.io/badge/Groq-Free%20API-F55036?style=for-the-badge&logo=groq&logoColor=white" alt="Groq" />
+    </a>
     <img src="https://img.shields.io/badge/Jupyter-Notebooks-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter" />
-    <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI" />
     <img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face" />
     <img src="https://img.shields.io/badge/FAISS-Vector%20Store-00ADD8?style=for-the-badge" alt="FAISS" />
     <img src="https://img.shields.io/badge/ChromaDB-Vector%20DB-FF6B35?style=for-the-badge" alt="ChromaDB" />
@@ -109,6 +130,82 @@ Phase 5: Agentic Systems      →  ReAct, Memory-Augmented, Agentic, Deep Resear
 | 18 | **Memory-Augmented RAG** | Persistent Memory | Retrieve from short & long-term memory | Conversational agents | Loss of multi-turn user context |
 | 19 | **Agentic RAG** | Autonomous Agents | Plan → Act → Observe → Iterate | Autonomous, long-horizon tasks | Multi-step task decomposition |
 | 20 | **Deep Research RAG** | Autonomous Research | Plan → Search → Synthesize → Report | Research, analysis, reports | Time-consuming multi-page search |
+
+---
+
+## 🧭 RAG Selection Guide: When to Use Which Pattern?
+
+Choosing the right RAG architecture depends on your data complexity, reasoning depth, latency budget, and API cost considerations. Below is a comprehensive guide to selecting the optimal pattern for your specific use case.
+
+### 🟢 Phase 1: Fundamentals (Baseline & Simple Q&A)
+*   **01. Standard RAG**
+    *   **Best Use Case:** Simple internal document Q&A, customer support FAQs, and single-source query systems with clean, concise text.
+    *   **When to Use:** When your documents are short (1–3 pages), questions are direct, and you need a quick, low-cost, and low-complexity baseline.
+*   **02. Hybrid RAG**
+    *   **Best Use Case:** Product catalogs, e-commerce searches, codebases, or medical records where specific keywords (SKUs, IDs, terminology) are as critical as semantic meanings.
+    *   **When to Use:** When standard semantic search fails to retrieve exact term matches, or when search performance degrades on short keyword queries.
+*   **03. Contextual RAG**
+    *   **Best Use Case:** Multi-turn conversational chat, or document corpora where crucial contextual information (e.g. subject, document type) is lost during typical text chunking.
+    *   **When to Use:** When queries are ambiguous or refer back to preceding topics, and you need to prepend summary context to chunks before ingestion.
+*   **04. Hierarchical RAG**
+    *   **Best Use Case:** Complex manuals, academic papers, and large books with clear structural hierarchies (chapters, sections, sub-sections).
+    *   **When to Use:** When you need to retrieve small, precise sentences for accurate vector matching, but must provide the larger parent context (e.g. the entire section) to the LLM for generation.
+
+### 🔵 Phase 2: Better Retrieval (Enterprise & Multi-Source)
+*   **05. Fusion RAG**
+    *   **Best Use Case:** User-facing search bars where inputs are poorly structured, short, or highly informal.
+    *   **When to Use:** When you want to automatically expand a single user query into multiple variations (query rewriting) and reciprocal rank fuse (RRF) the results to maximize recall.
+*   **06. Multi-Source RAG**
+    *   **Best Use Case:** Enterprise portals querying disparate repositories simultaneously (e.g. Confluence, Google Drive, Notion, and databases).
+    *   **When to Use:** When you need a unified agent that retrieves from distinct, heterogeneous indexes, performs isolated formatting, and synthesizes a single coherent response.
+*   **07. Reranker-Centric RAG**
+    *   **Best Use Case:** High-stakes regulatory compliance, financial reporting, or legal discovery where accuracy is critical.
+    *   **When to Use:** When you want to retrieve a large candidate pool (e.g. Top-50 chunks) to maximize recall, then use a Cross-Encoder or Cohere reranker to bubble up the Top-3 high-precision chunks.
+*   **08. ColBERT RAG**
+    *   **Best Use Case:** High-throughput search systems requiring fast, token-level semantic alignments and fine-grained matches.
+    *   **When to Use:** When standard single-vector representation loses subtle detail, and late-interaction token embeddings are required to match granular search intents without high latency.
+
+### 🟠 Phase 3: Better Reasoning (Complex Facts & Summarization)
+*   **09. Multi-Hop RAG**
+    *   **Best Use Case:** Intelligence analysis, investigative journalism, or complex customer troubleshooting where facts are scattered across multiple files.
+    *   **When to Use:** When answering a question requires finding Fact A in Document 1, which points to Fact B in Document 2, which then answers the user's question.
+*   **10. Graph RAG**
+    *   **Best Use Case:** Fraud investigation, lineage tracking, molecular research, or unstructured logs where understanding connections between entities is key.
+    *   **When to Use:** When data is highly relational, and traversal of network connections and topological communities provides superior context over standalone document chunks.
+*   **11. KG-RAG**
+    *   **Best Use Case:** Medical diagnostics, legal contracts, and strict rules-based systems.
+    *   **When to Use:** When you need mathematical fact verification and want to merge unstructured vector search with structured graph databases (e.g., Neo4j) to prevent hallucinated relationships.
+*   **12. RAPTOR RAG**
+    *   **Best Use Case:** Market analysis, thematic reviews, and summarization of massive books or entire codebases.
+    *   **When to Use:** When you need to answer global, thematic questions (e.g. "What are the main risks identified in these 50 company reports?") which standard local chunk-based retrieval cannot answer.
+
+### 🟣 Phase 4: Self-Improving Systems (Adaptive & Corrective)
+*   **13. Self-RAG**
+    *   **Best Use Case:** Dynamic Q&A platforms where some user queries are simple chitchat or general knowledge and others require deep retrieval.
+    *   **When to Use:** When you want to optimize token usage and response speed by letting the LLM decide when to call the retriever, when to skip it, and when to self-grade its own output.
+*   **14. Corrective RAG (CRAG)**
+    *   **Best Use Case:** Public-facing support tools where incorrect local context must not lead to silent hallucinations.
+    *   **When to Use:** When the system evaluates local search results as low-relevance and dynamically falls back to web search (e.g., Tavily API) to fetch correct up-to-date information.
+*   **15. Corrective Feedback RAG**
+    *   **Best Use Case:** Academic assistant agents, technical document drafting, and rigorous reporting tools.
+    *   **When to Use:** When you need a continuous feedback loop that automatically critiques and rewrites search queries or generated answers until they pass strict factual validation tests.
+*   **16. Adaptive RAG**
+    *   **Best Use Case:** High-volume production systems with diverse query profiles ranging from trivial to extremely complex.
+    *   **When to Use:** When you need an automated query classifier at the entry point to route simple requests to rapid Standard RAG pipelines and complex queries to multi-hop or agentic paths.
+
+### 🔴 Phase 5: Agentic Systems (Autonomous & Multi-Step)
+*   **17. ReAct RAG**
+    *   **Best Use Case:** Interactive software assistants, automated database queries, or command-line helper agents.
+    *   **When to Use:** When the agent needs a reasoning loop to decide *dynamically* which tool (e.g. Calculator, DB Search, API) to call next based on the intermediate outputs of previous steps.
+*   **18. Memory-Augmented RAG**
+    *   **Best Use Case:** Personalized AI tutors, virtual companions, and customer success agents handling long multi-day user relationships.
+    *   **When to Use:** When the system must maintain and update short-term episodic session context and long-term user profile memory across days or weeks.
+*   **19. Agentic RAG**
+    *   **Best Use Case:** Automated engineering agents, business operations, and automated financial research.
+    *   **When to Use:** When a task is too complex for single-prompt generation and requires autonomous execution loops involving planning, sub-task division, parallel execution, and self-reflection.
+*   **20. Deep Research RAG**
+    *   **Best Use Case:** Comprehensive market research reports, academic literature synthesis, and competitive analysis.
+    *   **When to Use:** When the goal is a complete multi-page document that requires scanning dozens of web pages and local files, compiling evidence, planning report outlines, and writing structured, cited chapters.
 
 ---
 
@@ -204,7 +301,7 @@ RAG-Design-Patterns/
 
 - **Python 3.9+**
 - **Git**
-- **API Keys**: OpenAI / HuggingFace / Cohere *(as needed per notebook)*
+- **API Keys**: Groq / HuggingFace / Cohere *(as needed per notebook)*
 
 ### Installation
 
@@ -243,7 +340,7 @@ cp .env.example .env
 
 ```ini
 # .env
-OPENAI_API_KEY=sk-...
+GROQ_API_KEY=gsk_...
 HUGGINGFACEHUB_API_TOKEN=hf_...
 COHERE_API_KEY=...
 LANGCHAIN_API_KEY=...
@@ -258,30 +355,45 @@ jupyter notebook
 ### Minimal Standard RAG Example
 
 ```python
-from langchain.document_loaders import TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOpenAI
+from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_groq import ChatGroq
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
 # 1. Load & Split Documents
 loader = TextLoader("data/my_docs.txt")
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 docs = splitter.split_documents(loader.load())
 
-# 2. Create Vector Store
-vectorstore = FAISS.from_documents(docs, OpenAIEmbeddings())
+# 2. Create Vector Store with Local Embeddings
+embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+vectorstore = FAISS.from_documents(docs, embeddings)
+retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-# 3. Build RAG Chain
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
-rag_chain = RetrievalQA.from_chain_type(
-    llm=llm,
-    retriever=vectorstore.as_retriever(search_kwargs={"k": 4})
+# 3. Build RAG Chain using Groq LLM
+llm = ChatGroq(model_name="llama-3.3-70b-versatile", temperature=0)
+
+prompt = ChatPromptTemplate.from_template("""
+Answer the question based only on the following context:
+{context}
+
+Question: {question}
+Answer:
+""")
+
+rag_chain = (
+    {"context": retriever | (lambda docs: "\n\n".join([d.page_content for d in docs])), "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
 )
 
 # 4. Query
-response = rag_chain.run("What is the key concept here?")
+response = rag_chain.invoke("What is the key concept here?")
 print(response)
 ```
 
@@ -292,8 +404,8 @@ print(response)
 | Component | Tools |
 |:---|:---|
 | **Framework** | LangChain, LangGraph |
-| **LLMs** | OpenAI GPT-4o, HuggingFace, Ollama |
-| **Embeddings** | OpenAI, HuggingFace (BAAI/bge), Cohere |
+| **LLMs** | Groq (Llama-3.3, Mixtral, Gemma-2), HuggingFace, Ollama |
+| **Embeddings** | HuggingFace (BAAI/bge), Cohere, Voyage AI |
 | **Vector Stores** | FAISS, ChromaDB, Pinecone, Weaviate |
 | **Rerankers** | Cohere Rerank, Cross-Encoder, ColBERT |
 | **Graph DBs** | Neo4j, NetworkX |
@@ -382,19 +494,6 @@ print(response)
 | **19. Agentic RAG** | 🔴 V.High | ⭐⭐⭐⭐⭐ | Slowest | $$$$ |
 | **20. Deep Research RAG** | 🔴 V.High | ⭐⭐⭐⭐⭐ | Slowest | $$$$ |
 
----
-
-## ✅ Key Considerations for Production RAG
-
-- **Data Quality** — Keep data fresh and relevant; up-to-date docs are critical
-- **Chunking Strategy** — Right chunk size improves retrieval significantly
-- **Embedding Model** — Domain-specific embeddings work better
-- **Retrieval Strategy** — Hybrid retrieval + reranking is powerful
-- **Prompt Engineering** — Clear instructions improve results
-- **Evaluation** — Use metrics: Faithfulness, Relevance, Recall
-- **Latency vs Accuracy** — Balance query optimization with quality needs
-- **Cost Management** — Optimize tokens, caching, and retrieval calls
-- **Monitor for Hallucinations** — Implement reflection and self-critique loops
 
 ---
 
