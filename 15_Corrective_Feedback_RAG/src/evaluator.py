@@ -9,16 +9,20 @@ def evaluate_retrieval(question: str, docs: list, llm: ChatGroq) -> str:
     context = "\n\n".join([doc.page_content for doc in docs])
     
     prompt = f"""
-    Evaluate whether the retrieved context is relevant for answering the question.
+    You are an expert factual grader.
+    Your task is to grade whether the retrieved context contains sufficient, specific information to answer the user's question.
     
-    Question:
+    User Question:
     {question}
     
-    Context:
+    Retrieved Context:
     {context}
     
-    Answer ONLY:
-    good or bad
+    Instructions:
+    - If the context contains specific, direct facts that can answer the question, answer "good".
+    - If the context only contains general topically related text but completely lacks the specific answer or facts to address the question, answer "bad".
+    
+    Answer ONLY "good" or "bad". Do not write anything else.
     """
     
     response = llm.invoke(prompt)

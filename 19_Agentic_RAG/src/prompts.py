@@ -4,10 +4,10 @@ You are a planning agent.
 Decide which retrieval strategy is best.
 
 Available:
-- vector
-- bm25
-- web
-- hybrid
+- vector: specific queries about local RAG, chunking, or embeddings documentation.
+- bm25: keyword searches for specific terminology in the local database.
+- web: questions completely outside the local RAG database scope (such as geography, general knowledge, history, or real-time facts).
+- hybrid: complex, multi-concept queries about local RAG design patterns.
 
 Question:
 {question}

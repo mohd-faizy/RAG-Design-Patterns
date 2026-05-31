@@ -1,3 +1,4 @@
+import re
 from duckduckgo_search import DDGS
 from rank_bm25 import BM25Okapi
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -19,10 +20,14 @@ vectorstore = Chroma(
 )
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
+def tokenize(text: str) -> list[str]:
+    """Lowercases and strips all non-alphanumeric characters for clean indexing."""
+    return re.sub(r"[^\w\s]", "", text.lower()).split()
+
 # Pre-load raw docs and build BM25 index
 _docs = load_documents()
 _texts = [doc.page_content for doc in _docs]
-_tokenized = [t.split() for t in _texts]
+_tokenized = [tokenize(t) for t in _texts]
 bm25 = BM25Okapi(_tokenized)
 
 def vector_retrieve(query: str) -> list[Document]:
@@ -34,7 +39,7 @@ def hybrid_retrieve(query: str) -> list[Document]:
     vector_docs = retriever.invoke(query)
     
     # BM25 keyword retrieval
-    scores = bm25.get_scores(query.split())
+    scores = bm25.get_scores(tokenize(query))
     top_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:3]
     bm25_docs = [_docs[i] for i in top_indices]
     

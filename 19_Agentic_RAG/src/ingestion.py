@@ -20,14 +20,32 @@ def load_documents():
 
 
 def create_vectorstore(docs):
+    import os
     embeddings = HuggingFaceEmbeddings(
         model_name="BAAI/bge-small-en-v1.5"
     )
 
-    vectorstore = Chroma.from_documents(
+    # Check if DB already exists and has documents to avoid duplication
+    if os.path.exists(CHROMA_PATH):
+        try:
+            vectorstore = Chroma(
+                persist_directory=CHROMA_PATH,
+                embedding_function=embeddings
+            )
+            count = vectorstore._collection.count()
+            if count > 0:
+                print(f"Vector database already exists and contains {count} documents. Skipping recreation.")
+                return
+            print("Vector database exists but is empty. Loading documents...")
+        except Exception:
+            print("Vector database exists but failed to load. Recreating...")
+
+    print("Initializing ingestion pipeline...")
+    Chroma.from_documents(
         documents=docs,
         embedding=embeddings,
         persist_directory=CHROMA_PATH
     )
+    print("Vector DB created and saved locally successfully!")
 
     # vectorstore.persist()  # Omitted as modern versions of Chroma DB automatically persist data

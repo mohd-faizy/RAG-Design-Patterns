@@ -1,5 +1,5 @@
 from dotenv import find_dotenv, load_dotenv
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
 
 from src.ingestion import load_documents, create_vectorstore
 from src.graph import build_graph

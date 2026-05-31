@@ -1,3 +1,4 @@
+import re
 from langchain.tools import tool
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
@@ -29,6 +30,10 @@ vector_retriever = vectorstore.as_retriever(
 # --------------------------------
 # BM25
 # --------------------------------
+def tokenize(text: str) -> list[str]:
+    """Lowercases and strips all non-alphanumeric characters for clean indexing."""
+    return re.sub(r"[^\w\s]", "", text.lower()).split()
+
 docs = load_documents()
 texts = [
     doc.page_content
@@ -36,7 +41,7 @@ texts = [
 ]
 
 tokenized_docs = [
-    text.split()
+    tokenize(text)
     for text in texts
 ]
 
@@ -50,6 +55,9 @@ bm25 = BM25Okapi(
 # --------------------------------
 @tool
 def vector_search(query: str):
+    """
+    Semantic vector retrieval tool. Queries the local vector database.
+    """
     results = vector_retriever.invoke(query)
 
     return "\n\n".join([
@@ -63,7 +71,10 @@ def vector_search(query: str):
 # --------------------------------
 @tool
 def bm25_search(query: str):
-    tokenized_query = query.split()
+    """
+    Keyword BM25 retrieval tool. Performs lexical keyword search on local database.
+    """
+    tokenized_query = tokenize(query)
 
     scores = bm25.get_scores(
         tokenized_query
@@ -88,6 +99,9 @@ def bm25_search(query: str):
 # --------------------------------
 @tool
 def web_search(query: str):
+    """
+    Web search retrieval tool. Searches DuckDuckGo for public and real-time facts.
+    """
     outputs = []
 
     with DDGS() as ddgs:

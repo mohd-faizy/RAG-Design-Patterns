@@ -18,16 +18,25 @@ def load_documents():
     return splitter.split_documents(docs)
 
 def create_vectorstore(docs):
-    # Only build it if it doesn't already exist to save compute time and API hits
-    if os.path.exists(CHROMA_PATH):
-        print("Vector database directory already exists. Skipping recreation.")
-        return
-
-    print("Initializing ingestion pipeline...")
     embeddings = HuggingFaceEmbeddings(
         model_name="BAAI/bge-small-en-v1.5"
     )
+    # Check if DB already exists and has documents
+    if os.path.exists(CHROMA_PATH):
+        try:
+            vectorstore = Chroma(
+                persist_directory=CHROMA_PATH,
+                embedding_function=embeddings
+            )
+            count = vectorstore._collection.count()
+            if count > 0:
+                print(f"Vector database already exists and contains {count} documents. Skipping recreation.")
+                return
+            print("Vector database exists but is empty. Loading documents...")
+        except Exception:
+            print("Vector database exists but failed to load. Recreating...")
 
+    print("Initializing ingestion pipeline...")
     # Initialize and save database locally (auto-persisted in modern Chroma)
     Chroma.from_documents(
         documents=docs,

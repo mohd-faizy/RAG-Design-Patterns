@@ -6,18 +6,24 @@ def classify_question(question: str, llm: ChatGroq) -> str:
     Returns one of: no_retrieval | vector | hybrid | web
     """
     prompt = f"""
-    Classify the complexity of the following question to choose the best retrieval strategy.
+    You are an advanced query router.
+    Your task is to classify the user's question into the most appropriate category to select the optimal retrieval strategy.
 
-    Categories (return ONLY one):
-    - no_retrieval   (simple factual, math, general knowledge requiring no documents)
-    - vector         (specific topic that can be found in a local database)
-    - hybrid         (requires both semantic and keyword search)
-    - web            (requires real-time or current information from the internet)
+    Local Database Scope:
+    - The local database contains highly detailed technical documentation about **Retrieval-Augmented Generation (RAG) Design Patterns**, AI agent frameworks, vector databases, LangChain, and LangGraph.
+    - Questions about RAG architectures (Standard, Hybrid, Contextual, Hierarchical, Reranker, Multi-Hop, KG, Agentic, Deep Research), LangChain, LangGraph, or LLM evaluation/retrieval are in the local database scope!
 
-    Question:
+    Categories (choose ONLY one):
+    - no_retrieval   (General trivia, math, simple greetings, basic coding questions, or general reasoning NOT related to RAG or AI architectures)
+    - vector         (Specific queries about standard RAG, chunking, embeddings, or simple local database topics)
+    - hybrid         (Complex queries about RAG, hybrid search, or detailed AI architectures/LangGraph workflow patterns)
+    - web            (Real-time, current events, or questions completely outside the local database scope like public companies, politics, weather, or other domains)
+
+    User Question:
     {question}
 
-    Return ONLY the category name. Nothing else.
+    Return ONLY the exact category name (no punctuation, no preambles):
+    no_retrieval OR vector OR hybrid OR web
     """
     response = llm.invoke(prompt)
     route = response.content.strip().lower()
