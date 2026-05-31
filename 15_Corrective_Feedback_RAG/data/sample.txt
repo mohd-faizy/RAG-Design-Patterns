@@ -1,0 +1,7 @@
+LangGraph supports graph-based AI orchestration.
+
+CRAG improves retrieval using corrective feedback loops.
+
+Hybrid retrieval combines vector search and BM25.
+
+Groq provides ultra-fast inference for open-source LLMs.

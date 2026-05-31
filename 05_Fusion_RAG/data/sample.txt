@@ -1,0 +1,9 @@
+Fusion RAG improves retrieval using multiple generated queries.
+
+LangGraph enables graph-based AI orchestration.
+
+ReAct combines reasoning and tool usage.
+
+Groq provides ultra-fast inference for LLMs.
+
+Hybrid retrieval combines semantic and lexical search.

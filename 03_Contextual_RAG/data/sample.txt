@@ -1,0 +1,7 @@
+LangGraph is a framework for building stateful AI systems.
+
+Conditional edges allow dynamic workflow routing.
+
+Nodes represent computation units inside a graph workflow.
+
+Groq provides ultra-fast inference for open-source models.

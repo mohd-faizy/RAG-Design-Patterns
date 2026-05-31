@@ -1,0 +1,9 @@
+LangGraph enables graph-based orchestration for AI systems.
+
+RAPTOR recursively summarizes clustered document chunks.
+
+Hierarchical retrieval improves long-context reasoning.
+
+Groq provides ultra-fast inference for LLMs.
+
+Hybrid retrieval combines semantic and lexical search.

@@ -1,0 +1,9 @@
+LangGraph is a framework for orchestrating stateful AI workflows.
+
+Graphs consist of nodes and edges.
+
+Conditional edges enable dynamic routing between nodes.
+
+Groq provides fast inference for open-source LLMs.
+
+Hierarchical RAG preserves parent-child document relationships.
