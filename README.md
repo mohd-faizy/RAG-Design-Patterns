@@ -236,6 +236,7 @@ RAG-Design-Patterns/
 ### Installation
 
 **1. Clone the repository**
+
 ```bash
 git clone https://github.com/mohd-faizy/RAG-Design-Patterns.git
 cd RAG-Design-Patterns
@@ -244,6 +245,7 @@ cd RAG-Design-Patterns
 **2. Set up the environment**
 
 *Using `uv` (Recommended — fastest):*
+
 ```bash
 uv venv
 source .venv/bin/activate       # macOS/Linux
@@ -252,6 +254,7 @@ uv add -r requirements.txt
 ```
 
 *Using `pip`:*
+
 ```bash
 python -m venv venv
 source venv/bin/activate        # macOS/Linux
@@ -260,9 +263,11 @@ pip install -r requirements.txt
 ```
 
 **3. Configure API keys**
+
 ```bash
 cp .env.example .env
 ```
+
 ```ini
 # .env
 OPENAI_API_KEY=sk-...
@@ -272,6 +277,7 @@ LANGCHAIN_API_KEY=...
 ```
 
 **4. Launch Jupyter**
+
 ```bash
 jupyter notebook
 ```
