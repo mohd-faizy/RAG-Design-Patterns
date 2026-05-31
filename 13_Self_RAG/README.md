@@ -19,27 +19,12 @@ Standard RAG architectures execute a fixed pipeline: **Retrieve once and Generat
 
 ```mermaid
 graph TD
-    Start([User Question]) --> Retrieve[Node: Retrieve Documents]
-    Retrieve --> Grade[Node: Grade Relevance]
-    
-    Grade --> Decide{Any Relevant Docs?}
-    Decide -- NO & Retries < 2 --> Rewrite[Node: Rewrite Query]
-    Rewrite --> Retrieve
-    
-    Decide -- YES --> Generate[Node: Generate Answer]
-    Decide -- NO & Retries >= 2 --> Generate
-    
-    Generate --> Verify{Is Grounded in Context?}
-    Verify -- NO & Retries < 2 --> Rewrite
-    Verify -- YES --> End([Formulate Final Answer])
-    Verify -- NO & Retries >= 2 --> End
-
-    style Retrieve fill:#2563EB,stroke:#fff,color:#fff
-    style Grade fill:#7C3AED,stroke:#fff,color:#fff
-    style Decide fill:#10B981,stroke:#fff,color:#fff
-    style Rewrite fill:#EF4444,stroke:#fff,color:#fff
-    style Generate fill:#D97706,stroke:#fff,color:#fff
-    style Verify fill:#10B981,stroke:#fff,color:#fff
+    Retrieve[Retrieve] --> Grade[Grade Docs]
+    Grade --> Rewrite[Rewrite Query]
+    Rewrite --> RetrieveAgain[Retrieve Again]
+    RetrieveAgain --> Generate[Generate]
+    Generate --> Verify[Hallucination Check]
+    Verify --> FinalResponse([Final Response])
 ```
 
 ### Flow Breakdown

@@ -21,17 +21,9 @@ Unlike linear pipelines, this implementation models RAG as a state-based workflo
 
 ```mermaid
 graph TD
-    Start([User Question]) --> Retrieve[Node: Retrieve Documents]
-    Retrieve --> Generate[Node: Generate Answer]
-    Generate --> End([Formulate Final Answer])
-
-    subgraph LangGraph State Workflow
-    Retrieve
-    Generate
-    end
-    
-    style Retrieve fill:#2563EB,stroke:#fff,stroke-width:2px,color:#fff
-    style Generate fill:#D97706,stroke:#fff,stroke-width:2px,color:#fff
+    Query([User Question]) --> Retrieve[Retrieve]
+    Retrieve --> Generate[Generate]
+    Generate --> FinalAnswer([Final Answer])
 ```
 
 ### Flow Breakdown

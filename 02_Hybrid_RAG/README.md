@@ -20,23 +20,14 @@ Both results are merged using **Reciprocal Rank Fusion (RRF)** to isolate the to
 
 ```mermaid
 graph TD
-    Start([User Question]) --> Retrieve[Node: Retrieve Documents]
-    
-    subgraph Hybrid Search Engine
-    Retrieve --> BM25[BM25 Lexical Search]
-    Retrieve --> VectorDB[Vector Dense Search]
-    BM25 --> RRF[Reciprocal Rank Fusion Fusion]
-    VectorDB --> RRF
-    end
-    
-    RRF --> Generate[Node: Generate Answer]
-    Generate --> End([Formulate Final Answer])
-
-    style BM25 fill:#4B5563,stroke:#fff,color:#fff
-    style VectorDB fill:#4B5563,stroke:#fff,color:#fff
-    style RRF fill:#10B981,stroke:#fff,color:#fff
-    style Retrieve fill:#2563EB,stroke:#fff,color:#fff
-    style Generate fill:#D97706,stroke:#fff,color:#fff
+    Query([User Query]) --> Search[Hybrid Search]
+    Search --> BM25[BM25 Keyword Search]
+    Search --> Vector[Vector DB Semantic Search]
+    BM25 --> RRF[RRF Fusion]
+    Vector --> RRF
+    RRF --> TopContext[Top Context]
+    TopContext --> Groq[Groq LLM]
+    Groq --> FinalAnswer([Final Answer])
 ```
 
 ### Flow Breakdown

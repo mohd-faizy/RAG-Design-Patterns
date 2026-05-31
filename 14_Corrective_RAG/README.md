@@ -19,26 +19,23 @@ Standard RAG architectures depend entirely on internal database records. When th
 
 ```mermaid
 graph TD
-    Start([User Question]) --> Retrieve[Node: Retrieve Chunks]
-    Retrieve --> Evaluate{Are Chunks Sufficient?}
+    Query([User Query]) --> Hybrid[Hybrid Retrieval]
+    Hybrid --> Evaluator{Retrieval Evaluator}
+    Evaluator -- GOOD --> Generate1[Generate]
+    Evaluator -- BAD --> Corrective[Corrective Action]
     
-    Evaluate -- GOOD --> Generate[Node: Generate Answer]
+    Corrective --> Rewrite[Query Rewrite]
+    Corrective --> WebSearch[Web Search]
     
-    Evaluate -- BAD --> Rewrite[Node: Rewrite Query]
-    Rewrite --> WebSearch[Node: Web Search Fallback]
-    WebSearch --> Generate
+    Rewrite --> Filtering[Context Filtering]
+    WebSearch --> Filtering
     
-    Generate --> Verify{Is Grounded in Context?}
-    Verify -- YES --> End([Formulate Final Answer])
-    Verify -- NO & Retries < 2 --> Rewrite
-    Verify -- NO & Retries >= 2 --> End
-
-    style Retrieve fill:#2563EB,stroke:#fff,color:#fff
-    style Evaluate fill:#10B981,stroke:#fff,color:#fff
-    style Rewrite fill:#EF4444,stroke:#fff,color:#fff
-    style WebSearch fill:#7C3AED,stroke:#fff,color:#fff
-    style Generate fill:#D97706,stroke:#fff,color:#fff
-    style Verify fill:#10B981,stroke:#fff,color:#fff
+    Filtering --> Generate2[Generate]
+    
+    Generate1 --> Hallucination[Hallucination Check]
+    Generate2 --> Hallucination
+    
+    Hallucination --> FinalAnswer([Final Answer])
 ```
 
 ### Flow Breakdown
