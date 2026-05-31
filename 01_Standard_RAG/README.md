@@ -1,17 +1,23 @@
-# Standard RAG 
+# Standard RAG (Fundamentals Phase)
 
-A **100% free, production-ready, and stateful** implementation of a **Standard Retrieval-Augmented Generation (RAG)** pipeline. This project is built using a modern, zero-cost development stack:
+A stateful, zero-cost, and production-structured implementation of the **Standard Retrieval-Augmented Generation (Standard RAG)** pattern.
 
-*   **Orchestration**: [LangGraph](https://github.com/langchain-ai/langgraph) (for stateful workflow management)
-*   **LLM Inference**: [Groq](https://groq.com/) (using the ultra-fast, free-tier `llama-3.3-70b-versatile`)
-*   **Embeddings**: [Hugging Face](https://huggingface.co/) (running the highly ranked open-source `BAAI/bge-small-en-v1.5` locally for free)
-*   **Vector Store**: [ChromaDB](https://www.trychroma.com/) (local vector database)
+---
+
+## 📖 What is Standard RAG?
+
+Standard RAG (sometimes called Naive RAG) is the foundational architecture of retrieval-augmented generation. It solves the static knowledge limitations of Large Language Models (LLMs) by retrieving external context in real-time to generate factually grounded answers.
+
+### What it Solves
+*   **Hallucination Reduction**: Grounding model responses in verified source materials.
+*   **Real-time Knowledge Update**: Allowing LLMs to answer questions using private or newly updated documents without requiring fine-tuning.
+*   **Domain-Specific Expertise**: Providing dynamic context matching specific internal data sources.
 
 ---
 
 ## 🏗️ Architecture & State Workflow
 
-Unlike linear pipelines, this implementation models RAG as a state-based workflow using **LangGraph**. The workflow moves state variables (question, retrieved context, and answer) across execution nodes.
+Unlike linear pipelines, this implementation models RAG as a state-based workflow using **LangGraph**. The workflow propagates state variables (user question, retrieved document context, and generated answer) across discrete execution nodes.
 
 ```mermaid
 graph TD
@@ -28,30 +34,32 @@ graph TD
     style Generate fill:#D97706,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-1.  **Retrieve Node**: Looks up relevant context chunks from the local Chroma database using the query.
-2.  **Generate Node**: Compiles the retrieved context and user query into a structured system prompt, sending it to the Groq LLM to compute the answer.
+### Flow Breakdown
+1.  **Retrieve Node**: Semantic vector query searches the local **ChromaDB** index to find the top 3 (`k=3`) closest document chunks using the user's question.
+2.  **Generate Node**: Compiles the retrieved document contents and the user query into a clean, system-instructed prompt and invokes **Groq's** fast-tier `llama-3.3-70b-versatile` to produce a fact-grounded response.
 
 ---
 
-## 📁 Directory Layout
+## 📁 Project Structure
 
-```text
-rag-langgraph-groq/
+The project code is fully modularized and clean:
+
+```bash
+01_Standard_RAG/
 │
 ├── app.py               # Main CLI interactive loop entrypoint
-├── requirements.txt     # Python package dependencies
-├── .env                 # API Keys and credentials (git-ignored)
+├── requirements.txt     # Local project packages
 │
 ├── data/
 │   └── sample.txt       # Seed raw data files
 │
 └── src/
     ├── __init__.py      # Package initialization
-    ├── state.py         # GraphState dictionary type definition
-    ├── prompts.py       # Precise system templates
-    ├── ingestion.py     # Document loader, splitter, and DB creator
-    ├── retriever.py     # Chroma database query retriever interface
-    └── graph.py         # LangGraph workflow compiler
+    ├── state.py         # GraphState schema using TypedDict
+    ├── prompts.py       # Fact-grounded system prompts
+    ├── ingestion.py     # Document splitter and DB builder
+    ├── retriever.py     # Chroma vector search retriever interface
+    └── graph.py         # LangGraph workflow builder and compiler
 ```
 
 ---
@@ -59,68 +67,28 @@ rag-langgraph-groq/
 ## ⚡ Quick Start
 
 ### 1. Prerequisites
-Ensure you have **Python 3.9+** installed on your system.
+Ensure you have configured the **centralized `.env`** file in the root folder of the repository workspace:
+```env
+GROQ_API_KEY=your_actual_groq_api_key_here
+```
 
 ### 2. Install Dependencies
-Navigate into the directory and install packages using your preferred manager:
-
+Navigate to this directory and install the required modules:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Setup Groq API Key
-Obtain a free API key from the [Groq Console](https://console.groq.com/). Create a `.env` file in the project root:
-
-```env
-GROQ_API_KEY=gsk_your_actual_free_groq_api_key_here
-```
-
-### 4. Run the Engine
-Execute the interactive terminal client:
-
+### 3. Run the Sandbox
+Boot the interactive application:
 ```bash
 python app.py
 ```
 
 ---
 
-## 💻 Code Architecture Details
+## 🔬 Core Components & Choices
 
-### Ingestion (`src/ingestion.py`)
-Processes raw text from `data/sample.txt` using LangChain's `RecursiveCharacterTextSplitter` (chunk size: 500, overlap: 50) and generates dense vector embeddings locally using Hugging Face's `BAAI/bge-small-en-v1.5`. ChromaDB automatically handles database persistence natively without deprecated `.persist()` commands.
-
-### Workflow State (`src/state.py`)
-Tracks data fields as they pass from one node to another:
-```python
-from typing import TypedDict, List
-from langchain_core.documents import Document
-
-class GraphState(TypedDict):
-    question: str
-    context: List[Document]
-    answer: str
-```
-
-### Graph Execution (`src/graph.py`)
-Constructs and compiles the state graph:
-*   **Retriever**: Extracts the top 3 (`k=3`) closest semantic matching segments.
-*   **Generator**: Utilizes Groq's high-capacity model (`llama-3.3-70b-versatile`) with a deterministic temperature (`0`) to output fact-based answers.
-
----
-
-## 📝 Example Interaction
-
-```text
-Vector DB created and saved locally successfully!
-
-========================================
- Free Groq/LangGraph RAG Engine Active
- Type 'exit' to quit.
-========================================
-
-Ask Question: What is Groq and what technology does it use?
-
-[Answer]:
-Groq provides ultra-fast LLM inference using its proprietary LPU (Language Processing Unit) technology.
---------------------
-```
+*   **Orchestration**: `LangGraph` stategraph compiler provides a stateful execution canvas.
+*   **Embeddings**: Local open-source `BAAI/bge-small-en-v1.5` embeddings run completely free on your local hardware.
+*   **Vector Database**: `ChromaDB` (configured inside `src/ingestion.py` without the deprecated `.persist()` method) automatically maintains the indexed documents in a local `chroma_db` cache.
+*   **LLM Engine**: Groq's high-efficiency `llama-3.3-70b-versatile` runs deterministic factual generation (temperature: `0`).
