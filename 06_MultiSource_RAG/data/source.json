@@ -1,0 +1,182 @@
+[
+    {
+        "text": "Artificial Intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. Core AI capabilities include learning, reasoning, problem-solving, perception, and natural language understanding.",
+        "metadata": {
+            "topic": "AI Fundamentals",
+            "author": "AI Research Team",
+            "source_type": "knowledge_base",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Machine Learning (ML) is a subset of AI that enables systems to automatically learn and improve from experience without being explicitly programmed. ML algorithms build models based on training data to make predictions or decisions.",
+        "metadata": {
+            "topic": "Machine Learning",
+            "author": "ML Research Team",
+            "source_type": "knowledge_base",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Deep Learning is a subset of machine learning that uses neural networks with many layers (deep neural networks) to learn representations of data. It powers breakthroughs in image recognition, speech recognition, and natural language processing.",
+        "metadata": {
+            "topic": "Deep Learning",
+            "author": "DL Research Team",
+            "source_type": "knowledge_base",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Large Language Models (LLMs) are AI systems trained on massive text corpora to understand and generate human language. Examples include GPT-4, Claude, Gemini, and LLaMA. They are the backbone of modern conversational AI and RAG systems.",
+        "metadata": {
+            "topic": "Large Language Models",
+            "author": "NLP Research Team",
+            "source_type": "knowledge_base",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Retrieval-Augmented Generation (RAG) combines the power of retrieval systems with generative AI. Instead of relying solely on parametric knowledge baked into model weights, RAG retrieves relevant documents from external knowledge bases at inference time, grounding the generation in factual, up-to-date information.",
+        "metadata": {
+            "topic": "RAG Architecture",
+            "author": "RAG Research Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Multi-Source RAG extends standard RAG by simultaneously querying multiple heterogeneous data sources: vector stores (semantic search), BM25 indexes (lexical keyword search), web APIs, SQL databases, and document repositories. Reciprocal Rank Fusion (RRF) merges results from all sources into a unified ranked list.",
+        "metadata": {
+            "topic": "Multi-Source RAG",
+            "author": "RAG Architecture Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "BM25 (Best Match 25) is a probabilistic ranking function used in information retrieval. It is a bag-of-words retrieval function that ranks documents based on the query terms appearing in each document, regardless of their proximity. BM25 is the gold standard for lexical search in RAG pipelines.",
+        "metadata": {
+            "topic": "BM25 Retrieval",
+            "author": "IR Research Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Vector Embeddings represent text as dense numerical vectors in a high-dimensional space. Similar texts are placed close together. Models like BAAI/bge-small-en-v1.5, text-embedding-ada-002, and sentence-transformers generate these embeddings. ChromaDB, FAISS, and Pinecone are popular vector stores.",
+        "metadata": {
+            "topic": "Vector Embeddings",
+            "author": "Embedding Research Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Reciprocal Rank Fusion (RRF) is a rank aggregation algorithm that combines rankings from multiple retrieval systems. For each document, RRF computes a score as the sum of 1/(k + rank) across all systems, where k is a smoothing constant (typically 60). This ensures robust merging of heterogeneous retrievers.",
+        "metadata": {
+            "topic": "Rank Fusion",
+            "author": "IR Research Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Transformer architecture, introduced in 'Attention Is All You Need' (2017), revolutionized NLP. It uses self-attention mechanisms to process sequences in parallel, enabling training on massive corpora. Transformers are the foundation of BERT, GPT, T5, and virtually all modern LLMs.",
+        "metadata": {
+            "topic": "Transformer Architecture",
+            "author": "Google Brain Team",
+            "source_type": "research_paper",
+            "year": 2023
+        }
+    },
+    {
+        "text": "Prompt Engineering is the practice of crafting effective input prompts to guide LLMs toward desired outputs. Techniques include zero-shot prompting, few-shot prompting, chain-of-thought prompting, and RAG-based prompting where retrieved context is injected into the prompt template.",
+        "metadata": {
+            "topic": "Prompt Engineering",
+            "author": "AI Engineering Team",
+            "source_type": "best_practices",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Hallucination in AI refers to the generation of factually incorrect, fabricated, or nonsensical information by LLMs. RAG systems significantly reduce hallucination by grounding model responses in retrieved factual documents rather than relying solely on learned parametric knowledge.",
+        "metadata": {
+            "topic": "AI Hallucination",
+            "author": "AI Safety Team",
+            "source_type": "knowledge_base",
+            "year": 2024
+        }
+    },
+    {
+        "text": "LangGraph is a library for building stateful, multi-actor applications with LLMs using graph-based orchestration. It represents workflows as directed graphs where nodes execute functions and edges define control flow. It supports cycles, persistence, and human-in-the-loop patterns for advanced RAG pipelines.",
+        "metadata": {
+            "topic": "LangGraph Framework",
+            "author": "LangChain Team",
+            "source_type": "framework_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "ChromaDB is an open-source, AI-native vector database designed for storing and querying vector embeddings. It supports local persistent storage and cloud deployment. ChromaDB integrates seamlessly with LangChain and is widely used in RAG prototypes and production pipelines.",
+        "metadata": {
+            "topic": "ChromaDB Vector Store",
+            "author": "Chroma Team",
+            "source_type": "framework_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "The AI development lifecycle includes: data collection and curation, model selection or pretraining, supervised fine-tuning (SFT), reinforcement learning from human feedback (RLHF), alignment and safety evaluation, deployment, monitoring, and continuous improvement. Each stage is critical for safe, high-quality AI systems.",
+        "metadata": {
+            "topic": "AI Development Lifecycle",
+            "author": "ML Ops Team",
+            "source_type": "best_practices",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Groq is a hardware company that has built the LPU (Language Processing Unit), an inference chip optimized for LLM workloads. Groq's API provides ultra-low latency inference for models like LLaMA-3, Mixtral, and Gemma, making it ideal for real-time RAG applications requiring fast generation.",
+        "metadata": {
+            "topic": "Groq LLM Inference",
+            "author": "Groq Technical Team",
+            "source_type": "product_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Agentic AI refers to AI systems that autonomously plan, reason, use tools, and take multi-step actions to accomplish complex goals. Agentic RAG goes beyond passive retrieval by dynamically selecting retrieval strategies, self-correcting errors, and iterating until the answer meets quality criteria.",
+        "metadata": {
+            "topic": "Agentic AI",
+            "author": "Agentic Systems Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Text Chunking strategies in RAG determine how documents are split before indexing. Fixed-size chunking splits by token count, recursive character splitting preserves sentence boundaries, semantic chunking groups topically similar sentences, and hierarchical chunking maintains parent-child document relationships for multi-level retrieval.",
+        "metadata": {
+            "topic": "Text Chunking",
+            "author": "RAG Engineering Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    },
+    {
+        "text": "Reinforcement Learning from Human Feedback (RLHF) is a training technique used to align LLMs with human preferences. Human labelers rank model outputs; these rankings train a reward model; the reward model guides policy optimization via PPO. RLHF is central to InstructGPT, ChatGPT, and Claude's alignment.",
+        "metadata": {
+            "topic": "RLHF",
+            "author": "Alignment Research Team",
+            "source_type": "research_paper",
+            "year": 2023
+        }
+    },
+    {
+        "text": "Hybrid Search combines dense vector search (semantic similarity) with sparse lexical search (BM25 keyword matching). This dual approach ensures strong recall on conceptual queries while preserving precision on exact-match terms. Most production RAG systems use hybrid search as the default retrieval strategy.",
+        "metadata": {
+            "topic": "Hybrid Search",
+            "author": "Search Engineering Team",
+            "source_type": "technical_documentation",
+            "year": 2024
+        }
+    }
+]

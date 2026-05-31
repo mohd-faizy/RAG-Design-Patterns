@@ -1,11 +1,13 @@
 from duckduckgo_search import DDGS
 from rank_bm25 import BM25Okapi
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from src.ingestion import load_documents
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent  # repo module root
 
-CHROMA_PATH = "chroma_db"
+CHROMA_PATH = str(BASE_DIR / "chroma_db")
 
 # Initialize dense vector store retriever
 embeddings = HuggingFaceEmbeddings(

@@ -15,7 +15,6 @@ from src.prompts import RAG_PROMPT
 from src.state import GraphState
 
 vector_retriever = VectorRetriever()
-bm25_retriever = BM25Retriever()
 web_retriever = WebRetriever()
 
 llm = ChatGroq(
@@ -25,77 +24,60 @@ llm = ChatGroq(
 
 
 # --------------------------------
-# MULTI SOURCE RETRIEVAL
-# --------------------------------
-def retrieve(state: GraphState) -> Dict:
-    query = state["question"]
-
-    vector_docs = vector_retriever.retrieve(query)
-    bm25_docs = bm25_retriever.retrieve(query)
-    web_docs = web_retriever.retrieve(query)
-
-    fused_docs = reciprocal_rank_fusion([
-        vector_docs,
-        bm25_docs,
-        web_docs
-    ])
-
-    return {
-        "context": fused_docs[:5]
-    }
-
-
-# --------------------------------
-# GENERATE
-# --------------------------------
-def generate(state: GraphState) -> Dict:
-    context_text = "\n\n".join([
-        doc.page_content
-        for doc in state["context"]
-    ])
-
-    prompt = RAG_PROMPT.format(
-        context=context_text,
-        question=state["question"]
-    )
-
-    response = llm.invoke(prompt)
-
-    return {
-        "answer": response.content
-    }
-
-
-# --------------------------------
 # BUILD GRAPH
 # --------------------------------
-def build_graph():
-    workflow = StateGraph(
-        GraphState
-    )
+def build_graph(docs):
+    # BM25 is built once from the pre-loaded docs — no redundant reload
+    bm25_retriever = BM25Retriever(docs)
 
-    workflow.add_node(
-        "retrieve",
-        retrieve
-    )
+    # --------------------------------
+    # MULTI SOURCE RETRIEVAL
+    # --------------------------------
+    def retrieve(state: GraphState) -> Dict:
+        query = state["question"]
 
-    workflow.add_node(
-        "generate",
-        generate
-    )
+        vector_docs = vector_retriever.retrieve(query)
+        bm25_docs = bm25_retriever.retrieve(query)
+        web_docs = web_retriever.retrieve(query)
 
-    workflow.set_entry_point(
-        "retrieve"
-    )
+        fused_docs = reciprocal_rank_fusion([
+            vector_docs,
+            bm25_docs,
+            web_docs
+        ])
 
-    workflow.add_edge(
-        "retrieve",
-        "generate"
-    )
+        return {
+            "context": fused_docs[:5]
+        }
 
-    workflow.add_edge(
-        "generate",
-        END
-    )
+    # --------------------------------
+    # GENERATE
+    # --------------------------------
+    def generate(state: GraphState) -> Dict:
+        context_text = "\n\n".join([
+            doc.page_content
+            for doc in state["context"]
+        ])
+
+        prompt = RAG_PROMPT.format(
+            context=context_text,
+            question=state["question"]
+        )
+
+        response = llm.invoke(prompt)
+
+        return {
+            "answer": response.content
+        }
+
+    workflow = StateGraph(GraphState)
+
+    workflow.add_node("retrieve", retrieve)
+    workflow.add_node("generate", generate)
+
+    workflow.set_entry_point("retrieve")
+
+    workflow.add_edge("retrieve", "generate")
+    workflow.add_edge("generate", END)
 
     return workflow.compile()

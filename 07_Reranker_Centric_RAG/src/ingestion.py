@@ -1,13 +1,17 @@
 import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
-CHROMA_PATH = "chroma_db"
+CHROMA_PATH = str(BASE_DIR / "chroma_db")
+DATA_PATH  = str(BASE_DIR / "data" / "sample.txt")
 
 def load_documents():
-    loader = TextLoader("data/sample.txt")
+    loader = TextLoader(DATA_PATH)
     docs = loader.load()
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=300,

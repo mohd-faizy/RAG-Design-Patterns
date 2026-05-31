@@ -1,11 +1,13 @@
 from langchain_community.document_loaders import TextLoader
 from langchain_groq import ChatGroq
 from src.graph_builder import GraphBuilder
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent  # repo module root
 
 def build_knowledge_graph():
     print("Initializing Graph RAG Ingestion Pipeline...")
     
-    loader = TextLoader("data/sample.txt")
+    loader = TextLoader(str(BASE_DIR / "data" / "sample.txt"))
     docs = loader.load()
 
     llm = ChatGroq(

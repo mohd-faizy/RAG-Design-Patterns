@@ -1,7 +1,9 @@
+from pathlib import Path
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
-CHROMA_PATH = "chroma_db"
+BASE_DIR = Path(__file__).resolve().parent.parent
+CHROMA_PATH = str(BASE_DIR / "chroma_db")
 
 def get_retriever():
     embeddings = HuggingFaceEmbeddings(

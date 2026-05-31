@@ -4,7 +4,7 @@ from langchain_core.documents import Document
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 CHROMA_PATH = os.path.abspath(os.path.join(current_dir, "..", "chroma_db"))
@@ -18,14 +18,14 @@ def load_documents():
     data_dir = os.path.abspath(os.path.join(current_dir, "..", "data"))
 
     # 1. Load Text Source
-    txt_path = os.path.join(data_dir, "source_txt.txt")
+    txt_path = os.path.join(data_dir, "source.txt")
     if os.path.exists(txt_path):
         print("Loading text source...")
         loader = TextLoader(txt_path, encoding="utf-8")
         docs.extend(loader.load())
 
     # 2. Load PDF Source
-    pdf_path = os.path.join(data_dir, "source_pdf.pdf")
+    pdf_path = os.path.join(data_dir, "source.pdf")
     if os.path.exists(pdf_path):
         try:
             print("Loading PDF source...")
@@ -35,7 +35,7 @@ def load_documents():
             print(f"[PDF Loader Warning] Failed to parse PDF: {e}")
 
     # 3. Load JSON Source
-    json_path = os.path.join(data_dir, "source_json.json")
+    json_path = os.path.join(data_dir, "source.json")
     if os.path.exists(json_path):
         try:
             print("Loading JSON source...")

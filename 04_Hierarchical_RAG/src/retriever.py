@@ -1,7 +1,9 @@
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent  # repo module root
 
-CHROMA_PATH = "chroma_db"
+CHROMA_PATH = str(BASE_DIR / "chroma_db")
 
 
 class HierarchicalRetriever:

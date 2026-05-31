@@ -14,7 +14,7 @@ def main():
     docs = load_documents()
     create_vectorstore(docs)
 
-    app = build_graph()
+    app = build_graph(docs)
 
     print("\n" + "="*40)
     print(" Multi-Source RAG Active (Vector + BM25 + Web Search)")

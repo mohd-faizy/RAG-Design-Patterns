@@ -2,9 +2,11 @@ import os
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent  # repo module root
 
-CHROMA_PATH = "chroma_db"
+CHROMA_PATH = str(BASE_DIR / "chroma_db")
 
 def create_vector_store():
     # Only build it if it doesn't already exist to save compute time and API hits
@@ -13,7 +15,7 @@ def create_vector_store():
         return
 
     print("Initializing ingestion pipeline...")
-    loader = TextLoader("data/sample.txt")
+    loader = TextLoader(str(BASE_DIR / "data" / "sample.txt"))
     documents = loader.load()
 
     # Split long text documents into manageable pieces
