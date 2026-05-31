@@ -1,0 +1,21 @@
+# Consolidated requirements for all RAG design patterns
+chromadb
+colbert-ai
+duckduckgo-search
+langchain
+langchain-community
+langchain-groq
+langchain-huggingface
+langgraph
+neo4j
+networkx
+numpy
+pypdf
+python-dotenv
+rank-bm25
+scikit-learn
+sentence-transformers
+tiktoken
+torch
+transformers
+uuid
