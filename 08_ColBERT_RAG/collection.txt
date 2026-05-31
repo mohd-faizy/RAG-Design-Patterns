@@ -1,0 +1,5 @@
+ColBERT uses token-level late interaction retrieval.
+Late interaction improves semantic precision.
+KG-RAG combines knowledge graphs and retrieval.
+Rerankers improve retrieval quality.
+LangGraph enables graph-based AI workflows.
