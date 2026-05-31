@@ -1,8 +1,8 @@
 from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
+
 from src.ingestion import create_vector_store
 from src.graph import build_graph
-
-load_dotenv(find_dotenv())
 
 def main():
     # 1. Build database locally if needed

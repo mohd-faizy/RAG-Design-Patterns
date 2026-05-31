@@ -1,0 +1,16 @@
+[
+    {
+        "text": "JSON Source: Structuring relational facts in JSON allows metadata filtering and precision retrieval.",
+        "metadata": {
+            "author": "AI Architect",
+            "source_type": "database_export"
+        }
+    },
+    {
+        "text": "This JSON file represents semi-structured database dumps containing business intelligence details.",
+        "metadata": {
+            "author": "System Administrator",
+            "source_type": "log_file"
+        }
+    }
+]

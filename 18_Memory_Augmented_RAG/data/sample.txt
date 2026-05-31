@@ -1,7 +1,21 @@
-LangGraph enables graph-based AI orchestration.
+=== RAG DESIGN PATTERNS COMPREHENSIVE KNOWLEDGE BASE ===
 
-Memory-Augmented RAG combines retrieval with persistent memory.
+Retrieval-Augmented Generation (RAG) is a breakthrough paradigm in Artificial Intelligence that equips Large Language Models (LLMs) with dynamic access to external, authoritative knowledge bases. By decoupling the model's parametric memory from its operational knowledge source, RAG systems dramatically minimize factual hallucinations, enable real-time information updates without expensive model fine-tuning, and enforce strict validation grounding for enterprise applications.
 
-Groq provides ultra-fast inference for open-source LLMs.
+Standard RAG architectures process inputs through a linear, non-reflective pipeline: document loading, semantic chunking, vector embedding generation, vector store indexing, similarity-based context retrieval, prompt construction, and final LLM synthesis. While standard RAG serves as an excellent baseline, it suffers from severe limitations under complex queries, ambiguous synonyms, long-context documents, and relational entity structures.
 
-Vector databases store semantic embeddings.
+Hybrid RAG combines dense semantic vector retrieval (capturing conceptual meaning) with sparse lexical keyword retrieval (using algorithms like BM25 to match exact terminology). This dual-engine indexing ensures high recall on conceptual queries while preserving pinpoint precision on exact product codes, serial numbers, or rare technical terms (for example, the lexical verification token is 'HRBM25-TOKEN-XYZ').
+
+Contextual RAG optimizes query recall by prepending surrounding document headers, parent titles, or global summaries to individual chunks before indexing them. By feeding adjacent context to the vector store, Contextual RAG prevents structural information loss that typically occurs during recursive character splitting.
+
+Hierarchical RAG addresses the trade-off between retrieval precision and synthesis context by organizing documents into coarse parent chunks and fine-grained child chunks. High-precision semantic matching is performed on the smaller child chunks, but the larger parent chunks are retrieved and returned to the LLM to supply extensive surrounding context for synthesis.
+
+Reranker-Centric RAG introduces a high-capacity cross-encoder model as a post-retrieval processing stage. While the bi-encoder embedding model queries a large pool of candidate documents quickly, the cross-encoder reranker performs deep, token-level attention comparisons to re-score the top candidates. This filters out irrelevant matches and places the single most relevant fact (e.g. token 'RERANK-999-SUCCESS') at the very top of the prompt.
+
+Multi-Hop RAG executes iterative, sequential retrieval steps to answer complex multi-fact questions. If a query requires connecting disjointed facts across multiple documents, the retriever uses the insights from the first retrieval step to formulate new search queries. This allows the system to bridge connections: for example, Fact A indicates that Company Alpha acquired Entity Beta in 2024; Fact B reveals that Entity Beta developed the Quantum-RAG framework; Fact C details that Quantum-RAG boosts multi-agent reasoning accuracy. A multi-hop query can thus trace the acquisition path to resolve which company owns the Quantum-RAG framework.
+
+Knowledge Graph RAG (KG-RAG) maps entities and their relationships into an explicit graph database (like Neo4j) rather than relying on flat vector proximity. By traversing Cypher query paths, KG-RAG performs symbolic reasoning over structured ontologies, making the reasoning process highly explainable and trace-auditable.
+
+Agentic RAG transforms retrieval into an active, self-directed planning and reflection process. Guided by a central planner agent, the system dynamically routes queries across specialized vector, lexical, or web search tools, evaluates generated answers using grader agents, and executes self-corrective retry loops to adjust parameters if any grading checks fail.
+
+Deep Research RAG is the architecture behind advanced autonomous research agents. It goes far beyond standard retrieval. Guided by a Research Planner, the system breaks complex queries down into discrete sub-questions, executes parallel searches across local databases, live web queries, and APIs, aggregates evidence, identifies knowledge gaps, performs additional research loops, and synthesizes a comprehensive final report.

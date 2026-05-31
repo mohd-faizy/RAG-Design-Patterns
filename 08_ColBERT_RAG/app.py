@@ -1,10 +1,11 @@
 from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
+
 from src.ingestion import load_documents
 from src.colbert_retriever import build_collection, build_index
 from src.graph import build_graph
 
 # Load environment variables from central root .env or local
-load_dotenv(find_dotenv())
 
 
 def main():

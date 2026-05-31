@@ -1,9 +1,10 @@
 from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
+
 from src.ingestion import build_knowledge_graph
 from src.graph import build_graph
 
 # Load environment variables from central root .env or local
-load_dotenv(find_dotenv())
 
 
 def main():

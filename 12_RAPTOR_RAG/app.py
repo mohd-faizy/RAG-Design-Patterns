@@ -1,9 +1,10 @@
 from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
+
 
 from src.ingestion import build_raptor_tree
 from src.graph import build_graph
 
-load_dotenv(find_dotenv())
 
 
 def main():

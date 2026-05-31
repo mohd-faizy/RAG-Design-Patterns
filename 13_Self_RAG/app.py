@@ -1,4 +1,6 @@
 from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
+
 
 from src.ingestion import (
     load_documents,
@@ -7,7 +9,6 @@ from src.ingestion import (
 
 from src.graph import build_graph
 
-load_dotenv(find_dotenv())
 
 
 def main():

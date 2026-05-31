@@ -1,9 +1,10 @@
 from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
+
 from src.ingestion import create_vector_store
 from src.graph import build_graph
 
 # Load environment variables from central root .env
-load_dotenv(find_dotenv())
 
 def main():
     # 1. Initialize database locally if needed

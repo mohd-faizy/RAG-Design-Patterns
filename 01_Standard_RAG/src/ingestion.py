@@ -7,9 +7,10 @@ from langchain_community.vectorstores import Chroma
 CHROMA_PATH = "chroma_db"
 
 def create_vector_store():
-    # Only build it if it doesn't already exist to save compute time
-    if os.path.exists(CHROMA_PATH):
-        print("Vector database directory already exists. Skipping recreation.")
+    # Only build it if it doesn't already exist and is populated to save compute time
+    sqlite_file = os.path.join(CHROMA_PATH, "chroma.sqlite3")
+    if os.path.exists(sqlite_file) and os.path.getsize(sqlite_file) > 200000:
+        print("Vector database already exists and is populated. Skipping recreation.")
         return
 
     print("Initializing ingestion pipeline...")
