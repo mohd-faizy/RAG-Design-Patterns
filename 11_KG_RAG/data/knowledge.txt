@@ -1,0 +1,9 @@
+Graph RAG uses knowledge graphs.
+
+Neo4j is a graph database.
+
+Knowledge graphs store entities and relationships.
+
+KG-RAG improves reasoning and explainability.
+
+LangGraph supports graph-based AI workflows.
