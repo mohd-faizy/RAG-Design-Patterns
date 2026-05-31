@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
 from src.ingestion import (
     load_and_split_documents,
@@ -7,7 +7,7 @@ from src.ingestion import (
 
 from src.graph import build_graph
 
-load_dotenv()
+load_dotenv(find_dotenv())
 
 
 def main():
