@@ -19,20 +19,20 @@ Standard RAG architectures depend entirely on internal database records. When th
 
 ```mermaid
 graph TD
-    Query([User Query]) --> Hybrid[Hybrid Retrieval]
-    Hybrid --> Evaluator{Retrieval Evaluator}
-    Evaluator -- GOOD --> Generate1[Generate]
+    Query([User Query]) --> Hybrid[Hybrid Retrieval (BM25 + ChromaDB)]
+    Hybrid --> Evaluator{Retrieval Evaluator (Groq Llama-3.3 Grader)}
+    Evaluator -- GOOD --> Generate1[Generate (Groq Llama-3.3)]
     Evaluator -- BAD --> Corrective[Corrective Action]
     
-    Corrective --> Rewrite[Query Rewrite]
-    Corrective --> WebSearch[Web Search]
+    Corrective --> Rewrite[Query Rewrite (Groq Llama-3.3)]
+    Corrective --> WebSearch[Web Search (DuckDuckGo)]
     
     Rewrite --> Filtering[Context Filtering]
     WebSearch --> Filtering
     
-    Filtering --> Generate2[Generate]
+    Filtering --> Generate2[Generate (Groq Llama-3.3)]
     
-    Generate1 --> Hallucination[Hallucination Check]
+    Generate1 --> Hallucination[Hallucination Check (Groq Llama-3.3)]
     Generate2 --> Hallucination
     
     Hallucination --> FinalAnswer([Final Answer])

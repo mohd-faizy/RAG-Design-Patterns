@@ -21,12 +21,12 @@ Both results are merged using **Reciprocal Rank Fusion (RRF)** to isolate the to
 ```mermaid
 graph TD
     Query([User Query]) --> Search[Hybrid Search]
-    Search --> BM25[BM25 Keyword Search]
-    Search --> Vector[Vector DB Semantic Search]
-    BM25 --> RRF[RRF Fusion]
+    Search --> BM25[BM25 Keyword Search (rank-bm25)]
+    Search --> Vector[Vector DB Semantic Search (ChromaDB)]
+    BM25 --> RRF[RRF Fusion (Reciprocal Rank Fusion)]
     Vector --> RRF
     RRF --> TopContext[Top Context]
-    TopContext --> Groq[Groq LLM]
+    TopContext --> Groq[Groq LLM (Llama-3.3)]
     Groq --> FinalAnswer([Final Answer])
 ```
 

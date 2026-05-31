@@ -21,8 +21,8 @@ Unlike linear pipelines, this implementation models RAG as a state-based workflo
 
 ```mermaid
 graph TD
-    Query([User Question]) --> Retrieve[Retrieve]
-    Retrieve --> Generate[Generate]
+    Query([User Question]) --> Retrieve[Retrieve (ChromaDB)]
+    Retrieve --> Generate[Generate (Groq Llama-3.3)]
     Generate --> FinalAnswer([Final Answer])
 ```
 

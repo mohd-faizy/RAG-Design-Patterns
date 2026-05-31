@@ -19,11 +19,11 @@ Standard RAG architectures execute a fixed pipeline: **Retrieve once and Generat
 
 ```mermaid
 graph TD
-    Retrieve[Retrieve] --> Grade[Grade Docs]
-    Grade --> Rewrite[Rewrite Query]
-    Rewrite --> RetrieveAgain[Retrieve Again]
-    RetrieveAgain --> Generate[Generate]
-    Generate --> Verify[Hallucination Check]
+    Retrieve[Retrieve (Hybrid BM25 + ChromaDB)] --> Grade[Grade Docs (Groq Llama-3.3 Grader)]
+    Grade --> Rewrite[Rewrite Query (Groq Llama-3.3 Rewriter)]
+    Rewrite --> RetrieveAgain[Retrieve Again (Hybrid BM25 + ChromaDB)]
+    RetrieveAgain --> Generate[Generate (Groq Llama-3.3 Generator)]
+    Generate --> Verify[Hallucination Check (Groq Llama-3.3 Checker)]
     Verify --> FinalResponse([Final Response])
 ```
 
