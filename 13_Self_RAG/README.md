@@ -1,4 +1,4 @@
-# Self-RAG with LangGraph + Groq + Hybrid Retrieval
+# Self-RAG
 
 A stateful, zero-cost, and production-structured implementation of the **Self-Reflective Retrieval-Augmented Generation (Self-RAG)** pattern.
 
@@ -6,12 +6,19 @@ A stateful, zero-cost, and production-structured implementation of the **Self-Re
 
 ## 📖 What is Self-RAG?
 
-Standard RAG architectures execute a fixed pipeline: **Retrieve once and Generate**. If the initial retrieval is noisy, irrelevant, or empty, the model produces poor answers or hallucinations.
+Self-RAG introduces the concept of **self-reflection and self-correction** into the RAG pipeline, transforming it from a blind "retrieve-and-generate" system into one that critically evaluates its own retrieval quality and generation accuracy.
 
-**Self-RAG** introduces **reflection and self-correction** into the generation loop:
-1.  **Relevance Assessment**: Grades whether retrieved documents are relevant to the user query.
-2.  **Adaptive Routing**: If context is graded poor, the pipeline rewrites the search query and retrieves fresh context.
-3.  **Hallucination Protection**: Verifies whether the final response is strictly supported by facts inside the matched documents.
+Standard RAG architectures execute a fixed pipeline: **Retrieve → Generate**. If the initial retrieval is noisy, irrelevant, or empty, the model produces poor answers or hallucinations — with no mechanism to detect or correct the problem.
+
+**Self-RAG** addresses this by adding two critical reflection gates:
+1.  **Relevance Assessment**: Grades whether retrieved documents are semantically relevant to the user query. If the context is graded as insufficient, the pipeline automatically **rewrites the query** and retrieves fresh context.
+2.  **Hallucination Check**: After generation, verifies whether the response is strictly supported by facts inside the matched documents. If hallucination is detected, the pipeline can loop back for additional retrieval.
+
+This creates a **closed-loop feedback system** where retrieval and generation are continuously refined until quality thresholds are met:
+
+```text
+Retrieve → Grade → [Poor? Rewrite & Retry] → Generate → Verify → [Hallucinated? Retry] → Answer
+```
 
 ---
 
@@ -39,9 +46,40 @@ graph TD
 
 ---
 
-## 📁 Project Structure
+## ⚙️ Key Components
 
-The codebase is highly modularized and clean:
+| Component | File | Role |
+| :--- | :--- | :--- |
+| **State Schema** | `src/state.py` | Defines `GraphState` TypedDict carrying question, context, answer, grading results, and retry count |
+| **Document Ingestion** | `src/ingestion.py` | Loads and chunks documents, builds the ChromaDB vector index |
+| **Hybrid Retriever** | `src/retriever.py` | Combines BM25 keyword search and ChromaDB vector search for dual-engine retrieval |
+| **Graders** | `src/graders.py` | LLM-powered reflection nodes: **Relevance Grader** (assesses document quality) and **Hallucination Grader** (verifies answer factual support) |
+| **Query Rewriter** | `src/query_rewriter.py` | LLM agent that reformulates the user query to improve retrieval results when initial context is graded as insufficient |
+| **Prompt Templates** | `src/prompts.py` | Evaluation prompt templates for relevance grading, hallucination checking, and fact-grounded generation |
+| **Workflow Graph** | `src/graph.py` | LangGraph stategraph compiler with conditional routing for grading and hallucination check loops |
+| **Application Entry** | `app.py` | Interactive CLI loop for querying the Self-RAG pipeline |
+
+---
+
+## 🔄 How It Works
+
+1. **Document Ingestion** — Documents are loaded, chunked, and indexed into both ChromaDB and an in-memory BM25 index for hybrid retrieval.
+
+2. **Hybrid Retrieval** — The user's query triggers both BM25 keyword search and vector semantic search, returning a combined set of candidate chunks.
+
+3. **Relevance Grading** — Each retrieved document is evaluated by Groq LLM acting as a relevance grader. The grader outputs `yes` or `no` for each document based on semantic match quality.
+
+4. **Conditional Rewrite** — If too few documents pass the relevance threshold (and retry limit hasn't been reached), the query is sent to the Query Rewriter. The LLM reformulates the question to be more specific or use alternative phrasing, and retrieval is attempted again.
+
+5. **LLM Generation** — Once sufficient relevant context is available, the documents and query are compiled into a prompt for Groq's `llama-3.3-70b-versatile`.
+
+6. **Hallucination Verification** — The generated answer is checked against the retrieved context by the Hallucination Grader. It verifies that every assertion in the answer is supported by the source documents.
+
+7. **Response Delivery** — If the answer passes the hallucination check, it is delivered. If not, the pipeline can loop back for additional retrieval and regeneration.
+
+---
+
+## 📁 Project Structure
 
 ```bash
 13_Self_RAG/
@@ -63,29 +101,46 @@ The codebase is highly modularized and clean:
 
 ---
 
-## ⚡ Quick Start
+## ✅ Advantages
 
-### 1. Prerequisites
-Ensure you have configured the **centralized `.env`** file in the root folder of the repository workspace:
-```env
-GROQ_API_KEY=your_actual_groq_api_key_here
-```
+- **Self-Healing Retrieval**: Automatically detects and corrects poor retrieval results by rewriting queries and retrying.
+- **Hallucination Protection**: Post-generation verification catches unsupported claims before they reach the user.
+- **Hybrid Search Foundation**: BM25 + Vector dual-engine retrieval provides robust initial coverage.
+- **Bounded Retries**: Retry limits prevent infinite loops while allowing multiple correction attempts.
+- **Transparent Reflection**: Grading decisions are visible in the output, making the self-correction process explainable.
 
-### 2. Install Dependencies
-Navigate to this directory and install the required modules:
-```bash
-pip install -r requirements.txt
-```
+## ⚠️ Limitations
 
-### 3. Run the Sandbox
-Boot the interactive application:
-```bash
-python app.py
-```
+- **Higher Latency**: Multiple LLM calls for grading, rewriting, and hallucination checking significantly increase response time.
+- **Increased API Usage**: Each question may trigger 3-5+ LLM calls (grading + rewriting + generation + hallucination check), consuming more tokens.
+- **Grader Accuracy**: The quality of self-correction depends on the LLM's ability to accurately assess relevance and detect hallucinations.
+- **Retry Limit Trade-Off**: Too few retries may miss recoverable queries; too many retries waste API calls on fundamentally unanswerable questions.
+- **Complexity**: The conditional routing logic is significantly more complex than linear RAG pipelines, making debugging harder.
 
 ---
 
-## 🔬 Core Grader Prompts
+## 🎯 Ideal Use Cases
+
+- **High-Stakes QA Systems** — Medical, legal, or financial applications where hallucinated answers could cause harm.
+- **Noisy Knowledge Bases** — Corpora with mixed-quality documents where initial retrieval frequently returns irrelevant results.
+- **Mission-Critical Enterprise Search** — Production systems where answer accuracy is more important than response speed.
+- **Compliance & Audit Systems** — Applications where every generated claim must be traceable to source evidence.
+- **Conversational AI Assistants** — User-facing chatbots where incorrect answers directly impact user trust.
+
+---
+
+## ⚖️ Comparison with Standard RAG
+
+| Feature | Standard RAG | Self-RAG |
+| :--- | :--- | :--- |
+| **Retrieval Validation** | ❌ None | **✅ LLM-based relevance grading** |
+| **Query Rewriting** | ❌ None | **✅ Automatic reformulation on poor results** |
+| **Hallucination Check** | ❌ None | **✅ Post-generation factual verification** |
+| **Retrieval Strategy** | Single-pass | **Multi-pass with retry loops** |
+| **Pipeline Type** | Fixed linear | **Adaptive conditional routing** |
+| **Latency** | Low | Higher (multiple LLM reflection calls) |
+
+### Core Grader Prompts
 
 Self-RAG depends on two critical logical reflection gates:
 1.  **Retrieval Sufficiency Grader**: Evaluates whether documents match the semantic context of the query (outputs `yes` or `no`).

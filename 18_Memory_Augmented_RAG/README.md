@@ -1,6 +1,29 @@
-# Phase 18: Memory-Augmented RAG (Long-Term Conversational Memory)
+# Memory-Augmented RAG
 
-Memory-Augmented RAG extends standard RAG by adding a **persistent long-term memory layer**. Instead of treating each conversation turn independently, it extracts important facts from every interaction, stores them to disk, and retrieves relevant memories in future queries — enabling personalized, contextually aware AI responses that persist across sessions.
+A production-structured implementation of the **Memory-Augmented RAG (Long-Term Conversational Memory)** pattern that adds persistent personalization to retrieval-augmented generation.
+
+---
+
+## 📖 What is Memory-Augmented RAG?
+
+Memory-Augmented RAG extends standard RAG by adding a **persistent long-term memory layer** that accumulates knowledge about users across conversations.
+
+Traditional RAG systems are stateless — every conversation turn is treated independently. The system forgets everything after each session:
+
+```text
+Session 1: "My favorite database is Neo4j."
+Session 2: "What graph database should I use?"
+→ Standard RAG: No memory, gives a generic answer
+→ Memory RAG:   Remembers Neo4j preference, gives a personalized answer
+```
+
+**Memory-Augmented RAG** solves this by adding a memory pipeline alongside the standard retrieval pipeline:
+1.  **Memory Extraction**: After each interaction, the LLM extracts important facts (preferences, decisions, context) from the conversation.
+2.  **Memory Storage**: Extracted memories are persisted to disk (`memory.json`) so they survive across sessions.
+3.  **Memory Retrieval**: Before generating an answer, relevant memories are retrieved and injected alongside the document context.
+4.  **Dual-Context Generation**: The LLM generates answers informed by both knowledge base documents and user-specific memories.
+
+The longer users interact with the system, the more personalized and contextually aware the responses become.
 
 ---
 
@@ -22,6 +45,39 @@ graph TD
 
 ---
 
+## ⚙️ Key Components
+
+| Component | File | Role |
+| :--- | :--- | :--- |
+| **State Schema** | `src/state.py` | Defines `GraphState` TypedDict carrying question, knowledge context, memory context, and answer |
+| **Document Ingestion** | `src/ingestion.py` | Loads and chunks documents, builds the ChromaDB vector database for knowledge retrieval |
+| **Memory Store** | `src/memory_store.py` | JSON-based persistent memory I/O — handles reading and writing memory entries to `memory/memory.json` |
+| **Memory Manager** | `src/memory_manager.py` | Orchestrates memory retrieval (finds relevant past memories), extraction (identifies new facts to remember), and update (persists new memories) |
+| **Retriever** | `src/retriever.py` | ChromaDB dense retriever for document knowledge retrieval |
+| **Prompt Templates** | `src/prompts.py` | Dual-context prompt template that integrates both knowledge base context and memory context |
+| **Workflow Graph** | `src/graph.py` | LangGraph 4-node workflow: Knowledge Retrieve → Memory Retrieve → Generate → Store Memory |
+| **Application Entry** | `app.py` | CLI entrypoint loop for interactive querying with persistent memory |
+
+---
+
+## 🔄 How It Works
+
+1. **Document Ingestion** — Documents are loaded, chunked, and indexed into ChromaDB for knowledge base retrieval.
+
+2. **Knowledge Retrieval** — The user's query is searched against ChromaDB, returning relevant document chunks from the knowledge base.
+
+3. **Memory Retrieval** — The system searches the persistent memory store (`memory/memory.json`) for memories relevant to the current query. Matching is based on keyword overlap between the query and stored memory facts.
+
+4. **Dual-Context Generation** — Both knowledge base context and relevant memories are compiled into a unified prompt. The LLM generates an answer informed by:
+   - **Factual knowledge** from the document corpus.
+   - **Personal context** from past user interactions.
+
+5. **Memory Extraction** — After generating the response, the LLM extracts any new important facts from the current conversation turn (e.g., user preferences, decisions, or stated requirements).
+
+6. **Memory Persistence** — Newly extracted memories are appended to `memory/memory.json` on disk, ensuring they are available in future sessions.
+
+---
+
 ## 🧠 Memory Types
 
 | Memory Type | Purpose | Implementation |
@@ -31,33 +87,6 @@ graph TD
 | **Episodic** | Past interaction facts | Extracted by Groq LLM |
 | **Semantic** | Knowledge base facts | ChromaDB retrieval |
 | **Working** | Temporary reasoning context | Combined prompt context |
-
----
-
-## ⚡ Why Memory-Augmented RAG Matters
-
-Traditional RAG forgets everything after each session:
-
-```text
-Session 1: "My favorite database is Neo4j."
-Session 2: "What graph database should I use?"
-→ Traditional RAG: No memory, generic answer
-→ Memory RAG:     Remembers Neo4j preference, personalized answer
-```
-
-Memory-Augmented RAG builds persistent context over time — the longer users interact, the more personalized the responses become.
-
----
-
-## 📊 Capability Comparison
-
-| Feature | Traditional RAG | Memory-Augmented RAG |
-| :--- | :--- | :--- |
-| **State** | Stateless | Persistent across sessions |
-| **Personalization** | None | Deep user-specific context |
-| **Continuity** | Session-only | Long-term memory |
-| **Context** | Document chunks only | Documents + memories |
-| **Use Cases** | Basic QA | AI Assistants, Copilots, Agents |
 
 ---
 
@@ -97,34 +126,31 @@ Context: "User prefers Neo4j" → Personalized answer generated
 
 ---
 
-## 🚀 Quick Start Guide
+## ✅ Advantages
 
-### 1. Install Phase Dependencies
-```bash
-pip install -r requirements.txt
-```
+- **Persistent Personalization**: Responses improve over time as the system accumulates knowledge about the user's preferences and context.
+- **Cross-Session Continuity**: Users don't need to repeat context — the system remembers past interactions across separate sessions.
+- **Dual-Context Generation**: Combining knowledge base facts with personal memories produces more relevant, tailored answers.
+- **Simple Persistence**: JSON-based storage makes the memory system easy to inspect, debug, and modify.
+- **No External Database**: Memory storage uses flat files — no additional database infrastructure required.
 
-### 2. Configure Environment Variables
-Ensure you have a `.env` file at the root of the **entire repository** (`RAG-Design-Patterns/.env`):
-```env
-GROQ_API_KEY=your_groq_api_key
-```
+## ⚠️ Limitations
 
-### 3. Run the Application
-```bash
-python app.py
-```
+- **Keyword-Based Memory Search**: Current memory retrieval uses simple keyword matching rather than semantic similarity, which may miss relevant memories phrased differently.
+- **Memory Growth**: The flat JSON file grows unbounded over time, potentially impacting retrieval performance.
+- **No Memory Prioritization**: All memories are treated equally — there is no importance scoring, decay, or recency weighting.
+- **Extraction Accuracy**: The LLM may extract incorrect or overly broad facts from conversations.
+- **Single-User Design**: The current implementation doesn't distinguish between different users — all memories are stored in a single file.
 
-### 4. Sample Conversation Flow
-```text
-Session 1:
-  Ask: "My favorite database is Neo4j."
-  → Memory stored: "User prefers Neo4j."
+---
 
-Session 2 (restart app):
-  Ask: "What graph database should I use?"
-  → Memory retrieved → Personalized answer referencing Neo4j
-```
+## 🎯 Ideal Use Cases
+
+- **Personal AI Assistants** — Assistants that learn user preferences, working styles, and frequently asked topics over time.
+- **Customer Support Copilots** — Tools that remember past customer interactions, previous issues, and stated preferences.
+- **Learning Companions** — Educational assistants that track what a student has learned and adapt explanations accordingly.
+- **Project Management Assistants** — Tools that accumulate context about project decisions, team preferences, and ongoing tasks.
+- **Health & Wellness Coaches** — Applications that remember dietary preferences, fitness goals, and medical history.
 
 ---
 
@@ -136,3 +162,15 @@ Session 2 (restart app):
 | Keyword matching | Semantic vector search over memories |
 | Flat memory list | Episodic memory with timestamps + importance scores |
 | Simple extraction | Structured memory with entities, relations, preferences |
+
+---
+
+## ⚖️ Comparison with Standard RAG
+
+| Feature | Standard RAG | Memory-Augmented RAG |
+| :--- | :--- | :--- |
+| **State** | Stateless | **Persistent across sessions** |
+| **Personalization** | None | **Deep user-specific context** |
+| **Continuity** | Session-only | **Long-term memory** |
+| **Context Sources** | Document chunks only | **Documents + personal memories** |
+| **Use Cases** | Basic QA | **AI Assistants, Copilots, Agents** |
