@@ -26,19 +26,22 @@ However, complex analysis queries require multi-step reasoning, evidence synthes
 
 ```mermaid
 graph TD
-    Question([User Query]) --> Planning["Planning Node {Planner Agent}"]
-    Planning --> Split["Task Split {Sub-Questions List}"]
+    Query([User Query]) --> Planner["Research Planner {Planner Agent}"]
     
-    subgraph Parallel Research Engine
-        Split --> Vector["Vector Database Search {ChromaDB}"]
-        Split --> Web["Live Web Search {DuckDuckGo}"]
+    subgraph Parallel Search Engine
+        Planner --> Vector["Vector DB {ChromaDB}"]
+        Planner --> Web["Web Search {DuckDuckGo}"]
+        Planner --> APIs["APIs / Docs"]
     end
     
-    Vector --> Aggregation["Evidence Aggregation"]
-    Web --> Aggregation
+    Vector --> Evidence["Evidence Collection"]
+    Web --> Evidence
+    APIs --> Evidence
     
-    Aggregation --> Synthesis["Synthesis Node {Synthesizer Agent}"]
-    Synthesis --> Report([Final Analyst Report])
+    Evidence --> Synthesis["Knowledge Synthesis {Synthesizer Agent}"]
+    Synthesis --> Gap["Gap Identification"]
+    Gap --> Additional["Additional Research"]
+    Additional --> Report([Final Report])
 ```
 
 ### 2. State-Based Graph Schema
