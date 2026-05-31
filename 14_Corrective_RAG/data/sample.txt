@@ -1,0 +1,9 @@
+Corrective RAG improves retrieval reliability.
+
+LangGraph orchestrates stateful AI workflows.
+
+BM25 helps exact keyword retrieval.
+
+Hybrid search combines semantic and lexical retrieval.
+
+Groq provides ultra-fast inference for open-source LLMs.
