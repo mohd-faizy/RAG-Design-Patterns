@@ -1,4 +1,8 @@
-=== RAG DESIGN PATTERNS COMPREHENSIVE KNOWLEDGE BASE ===
+import os
+import shutil
+
+# The complete master corpus with all RAG definitions, LangChain, and LangGraph
+MASTER_CORPUS = """=== RAG DESIGN PATTERNS COMPREHENSIVE KNOWLEDGE BASE ===
 
 Retrieval-Augmented Generation (RAG) is a breakthrough paradigm in Artificial Intelligence that equips Large Language Models (LLMs) with dynamic access to external, authoritative knowledge bases. By decoupling the model's parametric memory from its operational knowledge source, RAG systems dramatically minimize factual hallucinations, enable real-time information updates without expensive model fine-tuning, and enforce strict validation grounding for enterprise applications.
 
@@ -23,3 +27,45 @@ Deep Research RAG is the architecture behind advanced autonomous research agents
 LangChain is a popular open-source orchestration framework designed to simplify the creation of applications using large language models (LLMs). It provides standard interfaces, prompts, modular templates, and out-of-the-box chains to connect LLMs with external data sources, computation engines, and external tools.
 
 LangGraph is a revolutionary, state-of-the-art orchestration library built on top of LangChain, designed specifically for building stateful, multi-actor, and multi-agent applications with LLMs. By representing agent workflows as circular graphs containing nodes (which execute custom functions or tools) and edges (which route control flow dynamically or decide state transitions based on conditional logic), LangGraph natively supports loops, cycles, deep persistence, human-in-the-loop approval, and robust multi-agent coordination.
+"""
+
+def enrich_all_projects():
+    # Find all RAG folders in the workspace
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    rag_folders = [f for f in os.listdir(current_dir) if os.path.isdir(os.path.join(current_dir, f)) and f[0].isdigit()]
+    
+    print(f"Found {len(rag_folders)} sub-project directories.")
+    
+    for folder in sorted(rag_folders):
+        folder_path = os.path.join(current_dir, folder)
+        data_dir = os.path.join(folder_path, "data")
+        
+        # Ensure data directory exists
+        os.makedirs(data_dir, exist_ok=True)
+        
+        # Write to sample.txt if folder uses it or doesn't have knowledge.txt
+        sample_path = os.path.join(data_dir, "sample.txt")
+        knowledge_path = os.path.join(data_dir, "knowledge.txt")
+        
+        # We always write to sample.txt if it already exists or if we need standard data
+        # If it's one of ColBERT, KG RAG, Deep Research RAG, they use knowledge.txt
+        if folder in ["08_ColBERT_RAG", "11_KG_RAG", "20_Deep_Research_RAG"]:
+            target_path = knowledge_path
+        else:
+            target_path = sample_path
+            
+        with open(target_path, "w", encoding="utf-8") as f:
+            f.write(MASTER_CORPUS)
+        print(f"  [Enriched] Written corpus to: {folder}/data/{os.path.basename(target_path)}")
+        
+        # Clear outdated databases (chroma_db) to force ingestion re-run
+        chroma_db_dir = os.path.join(folder_path, "chroma_db")
+        if os.path.exists(chroma_db_dir):
+            try:
+                shutil.rmtree(chroma_db_dir)
+                print(f"  [Cleared] Deleted old Chroma DB: {folder}/chroma_db")
+            except Exception as e:
+                print(f"  [Warning] Could not delete {folder}/chroma_db: {e}")
+
+if __name__ == "__main__":
+    enrich_all_projects()

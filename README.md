@@ -198,33 +198,6 @@ RAG-Design-Patterns/
 
 ---
 
-## 📓 Notebook Index
-
-| S.No | Notebook | Architecture | Phase | Link |
-|:---:|:---|:---|:---|:---:|
-| **01** | `01_Standard_RAG.ipynb` | Standard RAG | Fundamentals | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](01_Fundamentals/01_Standard_RAG.ipynb) |
-| **02** | `02_Hybrid_RAG.ipynb` | Hybrid RAG | Fundamentals | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](01_Fundamentals/02_Hybrid_RAG.ipynb) |
-| **03** | `03_Contextual_RAG.ipynb` | Contextual RAG | Fundamentals | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](01_Fundamentals/03_Contextual_RAG.ipynb) |
-| **04** | `04_Hierarchical_RAG.ipynb` | Hierarchical RAG | Fundamentals | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](01_Fundamentals/04_Hierarchical_RAG.ipynb) |
-| **05** | `05_Fusion_RAG.ipynb` | Fusion RAG | Better Retrieval | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](02_Better_Retrieval/05_Fusion_RAG.ipynb) |
-| **06** | `06_MultiSource_RAG.ipynb` | Multi-Source RAG | Better Retrieval | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](02_Better_Retrieval/06_MultiSource_RAG.ipynb) |
-| **07** | `07_Reranker_Centric_RAG.ipynb` | Reranker-Centric RAG | Better Retrieval | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](02_Better_Retrieval/07_Reranker_Centric_RAG.ipynb) |
-| **08** | `08_ColBERT_RAG.ipynb` | ColBERT RAG | Better Retrieval | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](02_Better_Retrieval/08_ColBERT_RAG.ipynb) |
-| **09** | `09_MultiHop_RAG.ipynb` | Multi-Hop RAG | Better Reasoning | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](03_Better_Reasoning/09_MultiHop_RAG.ipynb) |
-| **10** | `10_Graph_RAG.ipynb` | Graph RAG | Better Reasoning | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](03_Better_Reasoning/10_Graph_RAG.ipynb) |
-| **11** | `11_KG_RAG.ipynb` | KG-RAG | Better Reasoning | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](03_Better_Reasoning/11_KG_RAG.ipynb) |
-| **12** | `12_RAPTOR_RAG.ipynb` | RAPTOR RAG | Better Reasoning | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](03_Better_Reasoning/12_RAPTOR_RAG.ipynb) |
-| **13** | `13_Self_RAG.ipynb` | Self-RAG | Self-Improving | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](04_Self_Improving/13_Self_RAG.ipynb) |
-| **14** | `14_Corrective_RAG.ipynb` | Corrective RAG (CRAG) | Self-Improving | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](04_Self_Improving/14_Corrective_RAG.ipynb) |
-| **15** | `15_Feedback_RAG.ipynb` | Corrective Feedback RAG | Self-Improving | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](04_Self_Improving/15_Feedback_RAG.ipynb) |
-| **16** | `16_Adaptive_RAG.ipynb` | Adaptive RAG | Self-Improving | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](04_Self_Improving/16_Adaptive_RAG.ipynb) |
-| **17** | `17_ReAct_RAG.ipynb` | ReAct RAG | Agentic Systems | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](05_Agentic_Systems/17_ReAct_RAG.ipynb) |
-| **18** | `18_Memory_Augmented_RAG.ipynb` | Memory-Augmented RAG | Agentic Systems | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](05_Agentic_Systems/18_Memory_Augmented_RAG.ipynb) |
-| **19** | `19_Agentic_RAG.ipynb` | Agentic RAG | Agentic Systems | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](05_Agentic_Systems/19_Agentic_RAG.ipynb) |
-| **20** | `20_Deep_Research_RAG.ipynb` | Deep Research RAG | Agentic Systems | [![Open](https://img.shields.io/badge/Open-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)](05_Agentic_Systems/20_Deep_Research_RAG.ipynb) |
-
----
-
 ## ⚡ Quick Start
 
 ### Prerequisites
@@ -325,6 +298,54 @@ print(response)
 | **Rerankers** | Cohere Rerank, Cross-Encoder, ColBERT |
 | **Graph DBs** | Neo4j, NetworkX |
 | **Notebooks** | Jupyter, Google Colab |
+
+---
+
+## 💾 Database & Storage Selection
+
+| **Type** | **Examples** | **Strengths** | **Weaknesses** | **Best for** |
+| --- | --- | --- | --- | --- |
+| **Vector DB** | Pinecone; Qdrant; Weaviate; Milvus; FAISS | Fast semantic search; filtering; scalable; built for embeddings | Cost (managed); ops for self‑hosted FAISS/Milvus | Primary semantic retriever in RAG. |
+| **Search Engine** | Elasticsearch / OpenSearch | Excellent full‑text, BM25, aggregations, mature tooling | Heavier infra; not native vectors (needs plugin) | Hybrid search, analytics, metadata filtering. |
+| **Relational / NoSQL** | PostgreSQL (with pgvector); MongoDB | Strong structured queries, ACID, joins; pgvector adds embeddings | Not optimized for large vector scale | Small RAG corpora, metadata joins, transactional data. |
+| **Graph DB** | Neo4j; Amazon Neptune | Models relationships, reasoning, path queries | Different query model; not for dense vector search | Knowledge graphs, entity linking, provenance. |
+| **Object Storage** | AWS S3; GCS; Azure Blob | Cheap storage for raw docs, PDFs, media; easy ingestion | Not searchable by itself; needs indexing | Long‑term storage and batch ingestion. |
+
+---
+
+## 🧠 Embedding Models Selection
+
+| **Embedding Model** | **Provider** | **Dimensionality** | **Strengths** | **Weaknesses** | **Best For** |
+| --- | --- | --- | --- | --- | --- |
+| **text-embedding-3-small/large** | OpenAI | 1536 / 3072 | Highly scalable, cheap, excellent general multilingual support, dynamic dimensions | API-dependent, potential latency spikes, data privacy concerns | Production general-purpose multilingual RAG |
+| **BAAI/bge-large-en-v1.5** | Hugging Face (Local) | 1024 | Pinpoint English retrieval, open-source, runs fully local/private, zero cost | Requires local compute (GPU/CPU overhead) | Offline RAG, private/sensitive data pipelines |
+| **cohere-embed-v3** | Cohere | 1024 | Built-in compression (binary/int8), state-of-the-art multilingual search, search-intent optimization | API cost, requires internet connection | Production global multi-language applications |
+| **voyage-3** | Voyage AI | 1024 / 2048 | Domain-specific context (code, finance, law), extremely high retrieval accuracy | Less known, API cost, limits on concurrency | Highly specialized domains (code repositories, legal) |
+| **multilingual-e5-large** | Microsoft (Local) | 1024 | Strong multilingual local retrieval, pre-trained on diverse datasets | Large memory footprint for local CPU | High-accuracy local multi-language deployments |
+
+---
+
+## ✂️ Chunking Strategies Selection
+
+| **Strategy** | **Description** | **Strengths** | **Weaknesses** | **Best For** |
+| --- | --- | --- | --- | --- |
+| **Character / Token Splitting** | Splits text by a fixed number of characters or tokens with a defined overlap. | Simple, predictable, fast execution, low computation cost | Disregards semantic boundaries; splits sentences or paragraphs in half | Base RAG pipelines, simple structured text (logs, FAQs). |
+| **Recursive Character Splitting** | Splits by a list of separators (e.g., `\n\n`, `\n`, ` `, `""`) recursively to keep paragraphs/sentences intact. | Extremely robust, maintains natural context groups, highly configurable | Can still lose high-level document hierarchy | General-purpose text, manuals, markdown, essays. |
+| **Semantic Chunking** | Uses embedding similarity between sentences to find natural transition points and group text dynamically. | Groups text by actual semantic meaning; prevents splitting cohesive concepts | High computational overhead; slow indexing speeds | Research articles, complex novels, conversational transcriptions. |
+| **Parent-Child (Hierarchical)** | Stores small chunks (child) for precise vector matching, but retrieves larger chunks (parent) for LLM context. | High precision matching with rich generation context | Complex indexing; higher storage footprint | Long-form books, legal contracts, comprehensive technical specs. |
+| **Agentic / Semantic Summarization** | Summarizes entire sections or pages recursively (like RAPTOR) to capture high-level ideas. | Preserves global thematic context across huge documents | Very high LLM api cost and indexing time | Comprehensive academic summaries, multi-document thematic search. |
+
+---
+
+## 🎯 Reranker Models Selection
+
+| **Reranker Model / Strategy** | **Type** | **Latency** | **Strengths** | **Weaknesses** | **Best For** |
+| --- | --- | --- | --- | --- | --- |
+| **Cohere Rerank v3** | Managed API | Medium (50-150ms) | Multilingual out-of-the-box, highly optimized for search relevance, handles diverse documents, cheap API cost | API dependency, requires network call | High-volume production multilingual systems |
+| **Cross-Encoder (e.g., `ms-marco-MiniLM-L-6-v2`)** | Local Model | Low-Medium (on GPU) | Fast, open-source, runs local (zero cost), excellent for English lexical/semantic mapping | Computationally heavy on CPU, limits sequence length (~512 tokens) | Local, private, or fast English-based RAG pipelines |
+| **BAAI/bge-reranker-large** | Local Model | Medium (on GPU) | Exceptional multilingual performance, high capacity, state-of-the-art accuracy | Higher memory footprint and GPU requirement | High-precision open-source applications |
+| **ColBERT Late Interaction (MaxSim)** | Multi-Vector | Very Fast | High token-level alignment accuracy, extremely fast query execution | High indexing storage overhead, complex index build stage | Dynamic, real-time token-level search pipelines |
+| **LLM-as-a-Reranker (e.g., GPT-4o-mini)** | Generative | Slow (500ms+) | Extremely deep reasoning, matches complex instructions, highly flexible | Very expensive, extremely slow, susceptible to LLM output parsing failures | Complex reasoning tasks, low-volume/high-value RAG |
 
 ---
 

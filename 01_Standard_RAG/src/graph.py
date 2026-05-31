@@ -6,18 +6,12 @@ from src.state import GraphState
 from src.retriever import get_retriever
 from src.prompts import RAG_PROMPT
 
-# Instantiate the tools inside our pipeline graph
-retriever = get_retriever()
-llm = ChatGroq(
-    model_name="llama-3.3-70b-versatile",
-    temperature=0
-)
-
 # --- WORKFLOW NODES ---
 
 def retrieve(state: GraphState) -> Dict:
     """Fetches relevant documents from ChromaDB."""
     question = state["question"]
+    retriever = get_retriever()
     docs = retriever.invoke(question)
     return {"context": docs}
 
@@ -34,6 +28,10 @@ def generate(state: GraphState) -> Dict:
         question=question
     )
     
+    llm = ChatGroq(
+        model_name="llama-3.3-70b-versatile",
+        temperature=0
+    )
     response = llm.invoke(prompt)
     return {"answer": response.content}
 
