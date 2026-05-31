@@ -1,0 +1,9 @@
+Graph RAG uses graph traversal and entity relationships.
+
+Adaptive RAG dynamically changes retrieval strategy.
+
+Multi-Hop RAG performs iterative reasoning across documents.
+
+Reranker-Centric RAG improves retrieval quality using cross-encoders.
+
+LangGraph enables graph-based agent orchestration.
