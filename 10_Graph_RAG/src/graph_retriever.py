@@ -75,11 +75,13 @@ class GraphRetriever:
                 cypher = """
                 MATCH (a)-[r:REL]->(b)
                 WHERE toLower(a.name) CONTAINS toLower($query)
+                   OR toLower($query) CONTAINS toLower(a.name)
                    OR toLower(b.name) CONTAINS toLower($query)
+                   OR toLower($query) CONTAINS toLower(b.name)
                 RETURN a.name AS source, r.type AS relation, b.name AS target
                 LIMIT 10
                 """
-                result = session.run(cypher, query=query)
+                result = session.run(cypher, {"query": query})
                 for record in result:
                     outputs.append(f"{record['source']} -[{record['relation']}]-> {record['target']}")
         except Exception as e:

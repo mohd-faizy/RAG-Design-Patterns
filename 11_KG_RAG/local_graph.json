@@ -1,0 +1,382 @@
+[
+  [
+    "Here are the extracted knowledge graph triplets in the format ENTITY1",
+    "RELATION",
+    "ENTITY2:"
+  ],
+  [
+    "1. RAG",
+    "IS_A",
+    "PARADIGM"
+  ],
+  [
+    "2. RAG",
+    "EQUIPS",
+    "LARGE LANGUAGE MODELS"
+  ],
+  [
+    "3. LARGE LANGUAGE MODELS",
+    "HAVE",
+    "DYNAMIC ACCESS"
+  ],
+  [
+    "4. DYNAMIC ACCESS",
+    "TO",
+    "EXTERNAL KNOWLEDGE BASES"
+  ],
+  [
+    "5. RAG SYSTEMS",
+    "MINIMIZE",
+    "FACTUAL HALLUCINATIONS"
+  ],
+  [
+    "6. RAG SYSTEMS",
+    "ENABLE",
+    "REAL-TIME INFORMATION UPDATES"
+  ],
+  [
+    "7. RAG SYSTEMS",
+    "ENFORCE",
+    "STRICT VALIDATION GROUNDING"
+  ],
+  [
+    "8. STANDARD RAG ARCHITECTURES",
+    "PROCESS",
+    "INPUTS"
+  ],
+  [
+    "9. STANDARD RAG ARCHITECTURES",
+    "SUFFER_FROM",
+    "SEVERE LIMITATIONS"
+  ],
+  [
+    "10. HYBRID RAG",
+    "COMBINES",
+    "DENSE SEMANTIC VECTOR RETRIEVAL"
+  ],
+  [
+    "11. HYBRID RAG",
+    "COMBINES",
+    "SPARSE LEXICAL KEYWORD RETRIEVAL"
+  ],
+  [
+    "12. CONTEXTUAL RAG",
+    "OPTIMIZES",
+    "QUERY RECALL"
+  ],
+  [
+    "13. CONTEXTUAL RAG",
+    "PREPENDS",
+    "SURROUNDING DOCUMENT HEADERS"
+  ],
+  [
+    "14. HIERARCHICAL RAG",
+    "ADDRESSES",
+    "TRADE-OFF"
+  ],
+  [
+    "15. HIERARCHICAL RAG",
+    "ORGANIZES",
+    "DOCUMENTS"
+  ],
+  [
+    "16. RERANKER-CENTRIC RAG",
+    "INTRODUCES",
+    "HIGH-CAPACITY CROSS-ENCODER MODEL"
+  ],
+  [
+    "17. RERANKER-CENTRIC RAG",
+    "FILTERS_OUT",
+    "IRRELEVANT MATCHES"
+  ],
+  [
+    "18. MULTI-HOP RAG",
+    "EXECUTES",
+    "ITERATIVE RETRIEVAL STEPS"
+  ],
+  [
+    "19. MULTI-HOP RAG",
+    "ANSWERS",
+    "COMPLEX MULTI-FACT QUESTIONS"
+  ],
+  [
+    "20. KNOWLEDGE GRAPH RAG",
+    "MAPS",
+    "ENTITIES"
+  ],
+  [
+    "21. KNOWLEDGE GRAPH RAG",
+    "MAPS",
+    "RELATIONSHIPS"
+  ],
+  [
+    "22. AGENTIC RAG",
+    "TRANSFORMS",
+    "RETRIEVAL"
+  ],
+  [
+    "23. AGENTIC RAG",
+    "GUIDED_BY",
+    "CENTRAL PLANNER AGENT"
+  ],
+  [
+    "24. DEEP RESEARCH RAG",
+    "GUIDED_BY",
+    "RESEARCH PLANNER"
+  ],
+  [
+    "25. DEEP RESEARCH RAG",
+    "BREAKS_DOWN",
+    "COMPLEX QUERIES"
+  ],
+  [
+    "26. LANGCHAIN",
+    "IS_A",
+    "OPEN-SOURCE ORCHESTRATION FRAMEWORK"
+  ],
+  [
+    "27. LANGCHAIN",
+    "PROVIDES",
+    "STANDARD INTERFACES"
+  ],
+  [
+    "28. LANGGRAPH",
+    "IS_A",
+    "ORCHESTRATION LIBRARY"
+  ],
+  [
+    "29. LANGGRAPH",
+    "BUILT_ON",
+    "LANGCHAIN"
+  ],
+  [
+    "30. LANGGRAPH",
+    "SUPPORTS",
+    "LOOPS"
+  ],
+  [
+    "31. LANGGRAPH",
+    "SUPPORTS",
+    "CYCLES"
+  ],
+  [
+    "32. LANGGRAPH",
+    "SUPPORTS",
+    "DEEP PERSISTENCE"
+  ],
+  [
+    "33. LANGGRAPH",
+    "SUPPORTS",
+    "HUMAN-IN-THE-LOOP APPROVAL"
+  ],
+  [
+    "34. LANGGRAPH",
+    "SUPPORTS",
+    "ROBUST MULTI-AGENT COORDINATION"
+  ],
+  [
+    "17. MULTI-HOP RAG",
+    "EXECUTES",
+    "ITERATIVE RETRIEVAL STEPS"
+  ],
+  [
+    "18. MULTI-HOP RAG",
+    "ANSWERS",
+    "COMPLEX MULTI-FACT QUESTIONS"
+  ],
+  [
+    "19. KNOWLEDGE GRAPH RAG",
+    "MAPS",
+    "ENTITIES"
+  ],
+  [
+    "20. KNOWLEDGE GRAPH RAG",
+    "MAPS",
+    "RELATIONSHIPS"
+  ],
+  [
+    "21. AGENTIC RAG",
+    "TRANSFORMS",
+    "RETRIEVAL"
+  ],
+  [
+    "22. AGENTIC RAG",
+    "GUIDED_BY",
+    "CENTRAL PLANNER AGENT"
+  ],
+  [
+    "23. DEEP RESEARCH RAG",
+    "GUIDED_BY",
+    "RESEARCH PLANNER"
+  ],
+  [
+    "24. DEEP RESEARCH RAG",
+    "BREAKS_DOWN",
+    "COMPLEX QUERIES"
+  ],
+  [
+    "25. LANGCHAIN",
+    "IS_A",
+    "OPEN-SOURCE ORCHESTRATION FRAMEWORK"
+  ],
+  [
+    "26. LANGCHAIN",
+    "SIMPLIFIES",
+    "CREATION OF APPLICATIONS"
+  ],
+  [
+    "27. LANGGRAPH",
+    "IS_A",
+    "ORCHESTRATION LIBRARY"
+  ],
+  [
+    "28. LANGGRAPH",
+    "BUILT_ON",
+    "LANGCHAIN"
+  ],
+  [
+    "29. LANGGRAPH",
+    "SUPPORTS",
+    "LOOPS"
+  ],
+  [
+    "30. LANGGRAPH",
+    "SUPPORTS",
+    "CYCLES"
+  ],
+  [
+    "1. RAG",
+    "IS_A",
+    "BREAKTHROUGH_PARADIGM"
+  ],
+  [
+    "2. RAG",
+    "EQUIPS",
+    "LARGE_LANGUAGE_MODELS"
+  ],
+  [
+    "3. LARGE_LANGUAGE_MODELS",
+    "HAVE",
+    "DYNAMIC_ACCESS"
+  ],
+  [
+    "4. DYNAMIC_ACCESS",
+    "TO",
+    "EXTERNAL_KNOWLEDGE_BASES"
+  ],
+  [
+    "5. RAG_SYSTEMS",
+    "MINIMIZE",
+    "FACTUAL_HALLUCINATIONS"
+  ],
+  [
+    "6. RAG_SYSTEMS",
+    "ENABLE",
+    "REAL_TIME_INFORMATION_UPDATES"
+  ],
+  [
+    "7. STANDARD_RAG_ARCHITECTURES",
+    "PROCESS",
+    "INPUTS"
+  ],
+  [
+    "8. INPUTS",
+    "THROUGH",
+    "LINEAR_NON_REFLECTIVE_PIPELINE"
+  ],
+  [
+    "9. STANDARD_RAG",
+    "SERVES_AS",
+    "BASELINE"
+  ],
+  [
+    "10. STANDARD_RAG",
+    "SUFFERS_FROM",
+    "SEVERE_LIMITATIONS"
+  ],
+  [
+    "11. HYBRID_RAG",
+    "COMBINES",
+    "DENSE_SEMANTIC_VECTOR_RETRIEVAL"
+  ],
+  [
+    "12. HYBRID_RAG",
+    "COMBINES",
+    "SPARSE_LEXICAL_KEYWORD_RETRIEVAL"
+  ],
+  [
+    "13. CONTEXTUAL_RAG",
+    "OPTIMIZES",
+    "QUERY_RECALL"
+  ],
+  [
+    "14. CONTEXTUAL_RAG",
+    "PREPENDS",
+    "SURROUNDING_DOCUMENT_HEADERS"
+  ],
+  [
+    "15. HIERARCHICAL_RAG",
+    "ADDRESSES",
+    "TRADE_OFF"
+  ],
+  [
+    "16. HIERARCHICAL_RAG",
+    "ORGANIZES",
+    "DOCUMENTS"
+  ],
+  [
+    "17. RERANKER_CENTRIC_RAG",
+    "INTRODUCES",
+    "HIGH_CAPACITY_CROSS_ENCODER_MODEL"
+  ],
+  [
+    "18. MULTI_HOP_RAG",
+    "EXECUTES",
+    "ITERATIVE_RETRIEVAL_STEPS"
+  ],
+  [
+    "19. MULTI_HOP_RAG",
+    "ANSWERS",
+    "COMPLEX_MULTI_FACT_QUESTIONS"
+  ],
+  [
+    "20. KNOWLEDGE_GRAPH_RAG",
+    "MAPS",
+    "ENTITIES"
+  ],
+  [
+    "21. KNOWLEDGE_GRAPH_RAG",
+    "MAPS",
+    "RELATIONSHIPS"
+  ],
+  [
+    "22. AGENTIC_RAG",
+    "TRANSFORMS",
+    "RETRIEVAL"
+  ],
+  [
+    "23. AGENTIC_RAG",
+    "GUIDED_BY",
+    "CENTRAL_PLANNER_AGENT"
+  ],
+  [
+    "24. DEEP_RESEARCH_RAG",
+    "GUIDED_BY",
+    "RESEARCH_PLANNER"
+  ],
+  [
+    "25. LANGCHAIN",
+    "IS",
+    "OPEN_SOURCE_ORCHESTRATION_FRAMEWORK"
+  ],
+  [
+    "26. LANGCHAIN",
+    "SIMPLIFIES",
+    "CREATION_OF_APPLICATIONS"
+  ],
+  [
+    "27. LANGGRAPH",
+    "IS",
+    "ORCHESTRATION_LIBRARY"
+  ]
+]

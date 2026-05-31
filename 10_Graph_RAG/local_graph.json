@@ -268,5 +268,20 @@
     "LangGraph",
     "contains",
     "edges"
+  ],
+  [
+    "LangChain",
+    "provides",
+    "standard interfaces"
+  ],
+  [
+    "RAG",
+    "uses",
+    "LangChain"
+  ],
+  [
+    "RAG",
+    "uses",
+    "LangGraph"
   ]
 ]

@@ -43,7 +43,27 @@ class GraphBuilder:
             if "|" in line:
                 parts = line.split("|")
                 if len(parts) == 3:
-                    triplets.append([p.strip() for p in parts])
+                    source = parts[0].strip()
+                    rel = parts[1].strip()
+                    target = parts[2].strip()
+                    
+                    # Clean source and target by removing leading numbered list prefixes, bold markers, and quotes
+                    source = re.sub(r'^\d+\.\s*', '', source)  # remove "1. ", "12. "
+                    source = re.sub(r'^[-*+]\s*', '', source)   # remove "- ", "* "
+                    source = source.strip().strip('*"`')
+                    
+                    target = re.sub(r'^\d+\.\s*', '', target)
+                    target = re.sub(r'^[-*+]\s*', '', target)
+                    target = target.strip().strip('*"`')
+                    
+                    # Filter out helper introductory lines or headers
+                    if (source.lower().startswith("here are") or 
+                        source.lower().startswith("entity") or 
+                        len(source) > 60 or len(target) > 60):
+                        continue
+                        
+                    if source and rel and target:
+                        triplets.append([source, rel, target])
         return triplets
 
     def store_triplets(self, triplets: list[list[str]]):

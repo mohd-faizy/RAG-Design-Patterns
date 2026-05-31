@@ -14,6 +14,14 @@ def build_knowledge_graph():
 
     builder = KGBuilder()
 
+    if builder.driver:
+        try:
+            with builder.driver.session() as session:
+                session.run("MATCH (n) DETACH DELETE n")
+                print("Cleared existing local/cloud Neo4j database records to start fresh.")
+        except Exception as e:
+            print(f"[Ingestion Warning] Failed to clear Neo4j database: {e}")
+
     for doc in docs:
         triplets = builder.extract_triplets(
             doc.page_content

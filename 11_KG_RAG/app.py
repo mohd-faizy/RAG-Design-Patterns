@@ -1,5 +1,7 @@
-from dotenv import find_dotenv, load_dotenv
-load_dotenv(find_dotenv())
+from pathlib import Path
+from dotenv import load_dotenv
+ROOT_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(ROOT_DIR / ".env", override=True)
 
 from src.ingestion import build_knowledge_graph
 from src.graph import build_graph
