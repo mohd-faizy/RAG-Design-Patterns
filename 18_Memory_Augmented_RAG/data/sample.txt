@@ -1,0 +1,7 @@
+LangGraph enables graph-based AI orchestration.
+
+Memory-Augmented RAG combines retrieval with persistent memory.
+
+Groq provides ultra-fast inference for open-source LLMs.
+
+Vector databases store semantic embeddings.

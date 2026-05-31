@@ -1,0 +1,9 @@
+Graph RAG uses knowledge graphs for retrieval.
+
+Neo4j is one of the most popular graph databases.
+
+LangGraph supports graph-based AI orchestration.
+
+ReAct combines reasoning and acting.
+
+Groq provides ultra-fast inference for LLMs.
