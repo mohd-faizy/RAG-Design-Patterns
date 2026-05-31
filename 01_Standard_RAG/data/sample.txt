@@ -1,0 +1,4 @@
+LangGraph is a framework designed for building stateful, multi-agent applications using LLMs.
+LangChain is an open-source framework that helps developers build applications powered by language models.
+RAG stands for Retrieval-Augmented Generation, a technique that optimizes the output of an LLM by referencing an authoritative knowledge base outside of its training data.
+Groq provides ultra-fast LLM inference using its proprietary LPU (Language Processing Unit) technology.
