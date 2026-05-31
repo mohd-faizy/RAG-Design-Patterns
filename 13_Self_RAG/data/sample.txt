@@ -1,0 +1,9 @@
+LangGraph is a framework for building stateful AI workflows.
+
+Self-RAG improves retrieval quality using reflection.
+
+BM25 is useful for keyword matching.
+
+Embeddings capture semantic relationships.
+
+Groq provides fast inference for open-source LLMs.
