@@ -1,0 +1,9 @@
+LangGraph is used for orchestrating agentic workflows.
+
+Groq provides ultra-fast inference for LLM applications.
+
+Hybrid RAG combines vector search with keyword search.
+
+BM25 is a lexical retrieval algorithm.
+
+Embeddings capture semantic similarity between documents.
