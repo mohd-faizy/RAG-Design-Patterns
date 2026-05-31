@@ -1,0 +1,10 @@
+langchain
+langgraph
+langchain-community
+langchain-huggingface
+langchain-groq
+chromadb
+sentence-transformers
+duckduckgo-search
+rank-bm25
+python-dotenv

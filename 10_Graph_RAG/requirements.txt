@@ -1,0 +1,10 @@
+langchain
+langgraph
+langchain-community
+langchain-groq
+langchain-huggingface
+neo4j
+networkx
+chromadb
+sentence-transformers
+python-dotenv

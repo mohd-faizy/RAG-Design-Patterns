@@ -1,0 +1,9 @@
+LangGraph is a framework for building graph-based AI systems.
+
+Graph RAG uses knowledge graphs for retrieval.
+
+Neo4j is a graph database.
+
+Groq provides fast inference for open-source LLMs.
+
+ReAct combines reasoning and acting.
